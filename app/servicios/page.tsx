@@ -1,12 +1,11 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import { getServices } from "@/lib/content-loader"
 import type { Service } from "@/lib/content-loader"
 import { Wrench, Zap, Wind, Cog, Shield, Hammer } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const iconMap: Record<string, React.ComponentType<{ size: number; className: string }>> = {
   Wrench,

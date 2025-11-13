@@ -1,11 +1,14 @@
 import { ContactForm } from "@/components/contact-form"
+import { getContactInfo } from "@/lib/content-loader"
 
 export const metadata = {
   title: "Contacto - H&S Solutions LLC",
   description: "Ponte en contacto con H&S Solutions para solicitar nuestros servicios automotrices",
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contactInfo = await getContactInfo()
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -27,26 +30,26 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Teléfono</h3>
-                  <a href="tel:+12105551234" className="text-accent hover:text-accent/80 font-medium">
-                    (210) 555-1234
+                  <a href={`tel:${contactInfo.phone1}`} className="text-accent hover:text-accent/80 font-medium">
+                    {contactInfo.phone1}
                   </a>
                   <br />
-                  <a href="tel:+12105555678" className="text-accent hover:text-accent/80 font-medium">
-                    (210) 555-5678
+                  <a href={`tel:${contactInfo.phone2}`} className="text-accent hover:text-accent/80 font-medium">
+                    {contactInfo.phone2}
                   </a>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
-                  <a href="mailto:plus@hssolutionllc.com" className="text-accent hover:text-accent/80 font-medium">
-                    plus@hssolutionllc.com
+                  <a href={`mailto:${contactInfo.email}`} className="text-accent hover:text-accent/80 font-medium">
+                    {contactInfo.email}
                   </a>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Dirección</h3>
                   <p className="text-muted-foreground">
-                    San Antonio, TX 78201
+                    {contactInfo.address}
                     <br />
                     Estados Unidos
                   </p>

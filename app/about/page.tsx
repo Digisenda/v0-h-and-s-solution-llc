@@ -1,4 +1,4 @@
-import { getTeamMembers, getAboutInfo } from "@/lib/content-loader"
+import { getAboutInfo } from "@/lib/content-loader"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,13 +9,8 @@ export const metadata: Metadata = {
     "Conoce la historia, equipo y valores de H&S Solution LLC, tu taller automotriz de confianza en San Antonio.",
 }
 
-interface Props {
-  params: { slug?: string }
-}
-
 export default async function AboutPage() {
   const about = await getAboutInfo()
-  const team = await getTeamMembers()
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/5">
@@ -118,56 +113,59 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          {team.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {team.map((member) => (
-                <div
-                  key={member.slug}
-                  className="bg-gradient-to-b from-secondary/10 to-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
-                >
-                  {member.photo && (
-                    <div className="relative h-64 w-full overflow-hidden">
-                      <Image src={member.photo || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground">{member.name}</h3>
-                    <p className="text-primary font-semibold mb-2">{member.position}</p>
-                    <p className="text-sm text-muted-foreground mb-4">{member.specialty}</p>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">{member.bio}</p>
-
-                    <div className="space-y-2 text-sm">
-                      <p className="text-muted-foreground">
-                        <span className="font-semibold text-foreground">Experiencia:</span> {member.experience}+ años
-                      </p>
-                      {member.certifications.length > 0 && (
-                        <div>
-                          <p className="font-semibold text-foreground mb-1">Certificaciones:</p>
-                          <ul className="space-y-1">
-                            {member.certifications.map((cert, index) => (
-                              <li key={index} className="text-muted-foreground">
-                                • {cert}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
+          {/* Static team data */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-b from-secondary/10 to-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div className="relative h-64 w-full overflow-hidden">
+                <Image src="/placeholder.svg" alt="John Doe" fill className="object-cover" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-foreground">John Doe</h3>
+                <p className="text-primary font-semibold mb-2">Mecánico Principal</p>
+                <p className="text-sm text-muted-foreground mb-4">Automotriz</p>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  John es un mecánico con más de 15 años de experiencia en el campo.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <p className="text-muted-foreground">
+                    <span className="font-semibold text-foreground">Experiencia:</span> 15+ años
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground mb-1">Certificaciones:</p>
+                    <ul className="space-y-1">
+                      <li className="text-muted-foreground">• Certificado de Mecánica Automotriz</li>
+                      <li className="text-muted-foreground">• Certificado de Reparación de Motor</li>
+                    </ul>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg mb-4">Equipo aún por ser configurado</p>
-              <Link
-                href="/admin"
-                className="inline-block px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Agregar Miembros del Equipo
-              </Link>
+            <div className="bg-gradient-to-b from-secondary/10 to-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+              <div className="relative h-64 w-full overflow-hidden">
+                <Image src="/placeholder.svg" alt="Jane Smith" fill className="object-cover" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-foreground">Jane Smith</h3>
+                <p className="text-primary font-semibold mb-2">Asistente de Servicio</p>
+                <p className="text-sm text-muted-foreground mb-4">Atención al Cliente</p>
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  Jane se especializa en brindar un excelente servicio al cliente.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <p className="text-muted-foreground">
+                    <span className="font-semibold text-foreground">Experiencia:</span> 10+ años
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground mb-1">Certificaciones:</p>
+                    <ul className="space-y-1">
+                      <li className="text-muted-foreground">• Certificado de Atención al Cliente</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          )}
+            {/* Add more team members here if needed */}
+          </div>
         </div>
       </section>
 

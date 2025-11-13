@@ -1,17 +1,13 @@
-import fs from "fs"
-import path from "path"
-import matter from "gray-matter"
 import { GALLERY_ITEMS, FAQ_ITEMS } from "./static-content"
-import type {
-  GalleryItem as GalleryItemType,
-  Service as ServiceType,
-  TeamMember as TeamMemberType,
-  FAQ as FAQType,
-  Contact as ContactType,
-  Newsletter as NewsletterType,
-  ContactInfo as ContactInfoType,
-} from "./types"
-import { loadServicesContent, loadAboutContent, loadContactContent, loadHomeContent } from "./load-json-content"
+import type { GalleryItem as GalleryItemType, TeamMember as TeamMemberType } from "./types"
+import homeES from "@/content/home.es.json"
+import homeEN from "@/content/home.en.json"
+import servicesES from "@/content/services.es.json"
+import servicesEN from "@/content/services.en.json"
+import aboutES from "@/content/about.es.json"
+import aboutEN from "@/content/about.en.json"
+import contactES from "@/content/contact.es.json"
+import contactEN from "@/content/contact.en.json"
 
 export interface BlogPost {
   slug: string
@@ -108,219 +104,106 @@ export interface LegalPage {
   published?: boolean
 }
 
+export interface Service {
+  slug: string
+  name: string
+  description: string
+  fullDescription: string
+  benefits: string[]
+  price: string
+  duration: string
+  image?: string
+  icon?: string
+  order: number
+  published?: boolean
+}
+
+export interface GalleryItem {
+  slug: string
+  title: string
+  description: string
+  serviceType: string
+  beforeImage: string
+  afterImage: string
+  date: string
+  featured?: boolean
+}
+
+// Static imports - NO fs usage
 export async function getHomeContent(locale: "es" | "en" = "es") {
-  try {
-    return await loadHomeContent(locale)
-  } catch {
-    return null
-  }
+  return locale === "en" ? homeEN : homeES
 }
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const blogDir = path.join(process.cwd(), "content/blog")
-
-  if (!fs.existsSync(blogDir)) {
-    return []
-  }
-
-  const files = fs.readdirSync(blogDir).filter((file) => file.endsWith(".md"))
-
-  const posts: BlogPost[] = files.map((file) => {
-    const filePath = path.join(blogDir, file)
-    const fileContents = fs.readFileSync(filePath, "utf8")
-    const { data, content } = matter(fileContents)
-
-    return {
-      slug: file.replace(/\.md$/, ""),
-      title: data.title || "Sin título",
-      description: data.description || "",
-      content,
-      image: data.image,
-      author: data.author,
-      date: data.date,
-      category: data.category,
-      published: data.published !== false,
-    }
-  })
-
-  return posts
-    .filter((post) => post.published)
-    .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+export async function getServices(locale: "es" | "en" = "es"): Promise<Service[]> {
+  const services = locale === "en" ? servicesEN : servicesES
+  return Array.isArray(services) ? services : services.services || []
 }
 
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  const posts = await getBlogPosts()
-  return posts.find((post) => post.slug === slug) || null
-}
-
-export async function getServices(locale: "es" | "en" = "es"): Promise<ServiceType[]> {
-  const services = await loadServicesContent(locale)
-  return services
-}
-
-export async function getService(slug: string, locale: "es" | "en" = "es"): Promise<ServiceType | null> {
+export async function getService(slug: string, locale: "es" | "en" = "es"): Promise<Service | null> {
   const services = await getServices(locale)
   return services.find((s) => s.slug === slug) || null
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  const testimonialsDir = path.join(process.cwd(), "content/testimonios")
+export async function getAboutInfo(locale: "es" | "en" = "es"): Promise<AboutInfo | null> {
+  const about = locale === "en" ? aboutEN : aboutES
+  return about as unknown as AboutInfo
+}
 
-  if (!fs.existsSync(testimonialsDir)) {
-    return []
-  }
-
-  const files = fs.readdirSync(testimonialsDir).filter((file) => file.endsWith(".yml"))
-
-  const testimonials: Testimonial[] = files.map((file) => {
-    const filePath = path.join(testimonialsDir, file)
-    const fileContents = fs.readFileSync(filePath, "utf8")
-    const { data } = matter(fileContents)
-
-    return {
-      author: data.author || "Anónimo",
-      quote: data.quote || "",
-      rating: data.rating || 5,
-      published: data.published !== false,
-    }
-  })
-
-  return testimonials.filter((t) => t.published)
+export async function getContactInfo(locale: "es" | "en" = "es"): Promise<ContactInfo | null> {
+  const contact = locale === "en" ? contactEN : contactES
+  return contact as unknown as ContactInfo
 }
 
 export async function getGalleryItems(): Promise<GalleryItemType[]> {
   return GALLERY_ITEMS
 }
 
-export async function getContacts(): Promise<ContactType[]> {
-  const contactsDir = path.join(process.cwd(), "content/contactos")
-
-  if (!fs.existsSync(contactsDir)) {
-    return []
-  }
-
-  const files = fs.readdirSync(contactsDir).filter((file) => file.endsWith(".yml"))
-
-  const contacts: ContactType[] = files.map((file) => {
-    const filePath = path.join(contactsDir, file)
-    const fileContents = fs.readFileSync(filePath, "utf8")
-    const { data } = matter(fileContents)
-
-    return {
-      slug: file.replace(/\.yml$/, ""),
-      name: data.name || "",
-      email: data.email || "",
-      phone: data.phone,
-      subject: data.subject || "",
-      message: data.message || "",
-      vehicle: data.vehicle,
-      serviceType: data.serviceType,
-      read: data.read || false,
-      date: data.date,
-    }
-  })
-
-  return contacts.sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+export async function getFAQs(): Promise<FAQ[]> {
+  return FAQ_ITEMS
 }
 
-export async function getNewsletterSubscribers(): Promise<NewsletterType[]> {
-  const newsletterDir = path.join(process.cwd(), "content/newsletter")
-
-  if (!fs.existsSync(newsletterDir)) {
-    return []
-  }
-
-  const files = fs.readdirSync(newsletterDir).filter((file) => file.endsWith(".yml"))
-
-  const subscribers: NewsletterType[] = files.map((file) => {
-    const filePath = path.join(newsletterDir, file)
-    const fileContents = fs.readFileSync(filePath, "utf8")
-    const { data } = matter(fileContents)
-
-    return {
-      slug: file.replace(/\.yml$/, ""),
-      email: data.email || "",
-      name: data.name,
-      phone: data.phone,
-      interests: data.interests,
-      active: data.active !== false,
-      date: data.date,
-    }
-  })
-
-  return subscribers.filter((s) => s.active)
+export async function getFAQsByCategory(category: string): Promise<FAQ[]> {
+  return FAQ_ITEMS.filter((faq) => faq.category === category)
 }
 
 export async function getTeamMembers(): Promise<TeamMemberType[]> {
   return []
 }
 
-export async function getAboutInfo(locale: "es" | "en" = "es"): Promise<AboutInfo | null> {
-  try {
-    const content = await loadAboutContent(locale)
-    const values = Array.isArray(content.values) ? content.values : []
-    return {
-      title: content.title || "Acerca de H&S Solution LLC",
-      subtitle: content.subtitle || "",
-      story: content.story || "",
-      mission: content.mission || "",
-      vision: content.vision || "",
-      values,
-      mainImage: content.mainImage,
-    }
-  } catch {
-    return null
-  }
+export async function getTestimonials(): Promise<Testimonial[]> {
+  return []
 }
 
-export async function getFAQs(): Promise<FAQType[]> {
-  return FAQ_ITEMS
+export async function getContacts(): Promise<Contact[]> {
+  return []
 }
 
-export async function getFAQsByCategory(category: string): Promise<FAQType[]> {
-  return FAQ_ITEMS.filter((faq) => faq.category === category)
+export async function getNewsletterSubscribers(): Promise<Newsletter[]> {
+  return []
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
+  return []
+}
+
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  return null
 }
 
 export async function getTermsAndConditions(): Promise<LegalPage | null> {
-  const termsPath = path.join(process.cwd(), "content/legal/terminos.yml")
-
-  if (!fs.existsSync(termsPath)) {
-    return null
-  }
-
-  const fileContents = fs.readFileSync(termsPath, "utf8")
-  const { data } = matter(fileContents)
-
   return {
-    title: data.title || "Términos y Condiciones",
-    lastUpdated: data.lastUpdated || "",
-    content: data.content || "",
-    published: data.published !== false,
+    title: "Términos y Condiciones",
+    lastUpdated: new Date().toISOString(),
+    content: "Términos y condiciones pendiente de actualizar",
+    published: true,
   }
 }
 
 export async function getPrivacyPolicy(): Promise<LegalPage | null> {
-  const privacyPath = path.join(process.cwd(), "content/legal/privacidad.yml")
-
-  if (!fs.existsSync(privacyPath)) {
-    return null
-  }
-
-  const fileContents = fs.readFileSync(privacyPath, "utf8")
-  const { data } = matter(fileContents)
-
   return {
-    title: data.title || "Política de Privacidad",
-    lastUpdated: data.lastUpdated || "",
-    content: data.content || "",
-    published: data.published !== false,
-  }
-}
-
-export async function getContactInfo(locale: "es" | "en" = "es"): Promise<ContactInfoType | null> {
-  try {
-    return await loadContactContent(locale)
-  } catch {
-    return null
+    title: "Política de Privacidad",
+    lastUpdated: new Date().toISOString(),
+    content: "Política de privacidad pendiente de actualizar",
+    published: true,
   }
 }

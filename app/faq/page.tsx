@@ -1,32 +1,16 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { getFAQs } from "@/lib/content-loader"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
-import type { FAQ } from "@/lib/content-loader"
 
 const categories = ["General", "Servicios", "Precios", "Garantía", "Horarios"]
+const faqs = getFAQs()
 
 export default function FAQPage() {
-  const [faqs, setFaqs] = useState<FAQ[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>("General")
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    const loadFAQs = async () => {
-      try {
-        const data = await getFAQs()
-        setFaqs(data)
-      } catch (error) {
-        console.error("[v0] Error loading FAQs:", error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    loadFAQs()
-  }, [])
+  const [isLoading, setIsLoading] = useState(false)
 
   const filteredFAQs = faqs.filter((faq) => faq.category === selectedCategory)
 
