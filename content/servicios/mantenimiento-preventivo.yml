@@ -1,0 +1,17 @@
+title: "Mantenimiento Preventivo"
+description: "Mantén tu vehículo en óptimas condiciones con nuestro servicio de mantenimiento preventivo completo"
+fullDescription: |
+  El mantenimiento preventivo es esencial para garantizar la longevidad y buen funcionamiento de tu vehículo. Incluye cambio de aceite, filtros, inspección de frenos, revisión de fluidos y más.
+icon: "Wrench"
+image: "/placeholder.svg?height=400&width=600"
+benefits: |
+  Alargue la vida útil de tu vehículo
+  Evita reparaciones costosas futuras
+  Mejora el rendimiento y eficiencia de combustible
+  Mantiene la garantía de tu vehículo
+  Inspección completa de sistemas
+  Reportes detallados del estado del vehículo
+price: "$129 - $299"
+duration: "1-2 horas"
+order: 2
+published: true

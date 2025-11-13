@@ -1,0 +1,115 @@
+export const GALLERY_ITEMS = [
+  {
+    slug: "reparacion-motor-chevy",
+    title: "Reparación Motor Chevrolet",
+    description: "Reparación completa de motor con diagnostico computarizado",
+    service: "Reparación de Motor",
+    imageBefore: "/motor-da-ado-chevrolet.jpg",
+    imageAfter: "/motor-reparado-funcionando.jpg",
+    date: "2024-01-15",
+    published: true,
+  },
+  {
+    slug: "cambio-aceite-preventivo",
+    title: "Cambio de Aceite Preventivo",
+    description: "Mantenimiento preventivo completo con filtros nuevos",
+    service: "Mantenimiento Preventivo",
+    imageBefore: "/auto-para-mantenimiento.jpg",
+    imageAfter: "/auto-despues-mantenimiento.jpg",
+    date: "2024-01-10",
+    published: true,
+  },
+]
+
+export const SERVICES = [
+  {
+    slug: "diagnostico-computarizado",
+    title: "Diagnóstico Computarizado",
+    description: "Diagnostico avanzado de sistemas del vehiculo",
+    fullDescription:
+      "Utilizamos los equipos de diagnostico más avanzados para identificar cualquier problema en tu vehículo",
+    icon: "Cpu",
+    benefits: ["Identificación rápida de problemas", "Reporte detallado", "Soluciones precisas"],
+    price: "$75 - $150",
+    duration: "1-2 horas",
+    order: 1,
+    published: true,
+  },
+  {
+    slug: "mantenimiento-preventivo",
+    title: "Mantenimiento Preventivo",
+    description: "Servicios de mantenimiento regular",
+    fullDescription: "Mantén tu vehículo en óptimas condiciones con nuestros servicios de mantenimiento",
+    icon: "Wrench",
+    benefits: ["Mayor durabilidad del vehículo", "Mejor rendimiento", "Menos averías futuras"],
+    price: "$150 - $300",
+    duration: "2-3 horas",
+    order: 2,
+    published: true,
+  },
+  {
+    slug: "reparacion-motor",
+    title: "Reparación de Motor",
+    description: "Reparación completa de motores",
+    fullDescription: "Reparaciones de motor con garantía de calidad",
+    icon: "Zap",
+    benefits: ["Reparación profesional", "Garantía de trabajo", "Piezas de calidad"],
+    price: "$500 - $2000",
+    duration: "Varios días",
+    order: 3,
+    published: true,
+  },
+]
+
+export const TEAM_MEMBERS = [
+  {
+    slug: "mecanico-general",
+    name: "Carlos Hernández",
+    position: "Jefe Mecánico",
+    specialty: "Motores y Transmisiones",
+    bio: "15 años de experiencia en reparación de motores y sistemas de transmisión",
+    experience: 15,
+    certifications: ["ASE Certified", "Ford Specialist", "General Motors Expert"],
+    order: 1,
+    published: true,
+  },
+  {
+    slug: "electricista-auto",
+    name: "Miguel López",
+    position: "Electricista Automotriz",
+    specialty: "Sistemas Eléctricos",
+    bio: "12 años especializándose en sistemas eléctricos y electrónicos",
+    experience: 12,
+    certifications: ["ASE Electrical Specialist", "Electronics Expert"],
+    order: 2,
+    published: true,
+  },
+]
+
+export const FAQ_ITEMS = [
+  {
+    slug: "tiempo-reparacion",
+    question: "¿Cuánto tiempo tarda una reparación?",
+    answer:
+      "El tiempo depende del tipo de reparación. Las reparaciones menores toman 1-2 horas, mientras que las mayores pueden tardar varios días.",
+    category: "General",
+    order: 1,
+    published: true,
+  },
+  {
+    slug: "garantia-reparaciones",
+    question: "¿Qué garantía ofrecen las reparaciones?",
+    answer: "Ofrecemos garantía de 12 meses o 12,000 millas en todas nuestras reparaciones.",
+    category: "Garantía",
+    order: 1,
+    published: true,
+  },
+  {
+    slug: "formas-pago",
+    question: "¿Qué formas de pago aceptan?",
+    answer: "Aceptamos efectivo, tarjetas de crédito/débito, y cheques. También ofrecemos planes de financiamiento.",
+    category: "Precios",
+    order: 2,
+    published: true,
+  },
+]

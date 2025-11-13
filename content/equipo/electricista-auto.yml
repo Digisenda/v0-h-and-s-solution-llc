@@ -1,0 +1,10 @@
+name: "Juan García"
+position: "Electricista Automotriz"
+specialty: "Sistemas Eléctricos y Electrónicos"
+bio: "Especializado en diagnóstico y reparación de sistemas eléctricos complejos y módulos electrónicos de última generación."
+experience: 12
+order: 2
+certifications: |
+  Electrical Systems Specialist
+  OBD-II Diagnostic Certified
+published: true

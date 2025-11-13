@@ -1,0 +1,52 @@
+{
+  "services": [
+    {
+      "slug": "diagnostico-computarizado",
+      "title": "Computer Diagnostics",
+      "description": "Advanced vehicle system diagnostics",
+      "fullDescription": "We use the most advanced diagnostic equipment to identify any problem in your vehicle",
+      "icon": "Cpu",
+      "benefits": ["Quick problem identification", "Detailed report", "Precise solutions"],
+      "price": "$75 - $150",
+      "duration": "1-2 hours",
+      "order": 1,
+      "published": true
+    },
+    {
+      "slug": "mantenimiento-preventivo",
+      "title": "Preventive Maintenance",
+      "description": "Regular maintenance services",
+      "fullDescription": "Keep your vehicle in optimal condition with our maintenance services",
+      "icon": "Wrench",
+      "benefits": ["Greater vehicle durability", "Better performance", "Fewer future breakdowns"],
+      "price": "$150 - $300",
+      "duration": "2-3 hours",
+      "order": 2,
+      "published": true
+    },
+    {
+      "slug": "reparacion-motor",
+      "title": "Engine Repair",
+      "description": "Complete engine repairs",
+      "fullDescription": "Engine repairs with quality guarantee",
+      "icon": "Zap",
+      "benefits": ["Professional repair", "Warranty", "Quality parts"],
+      "price": "$500 - $2000",
+      "duration": "Several days",
+      "order": 3,
+      "published": true
+    },
+    {
+      "slug": "alineacion-balanceo",
+      "title": "Alignment and Balancing",
+      "description": "Professional wheel alignment and balancing",
+      "fullDescription": "Wheel alignment and tire balancing services with precision",
+      "icon": "RotateCw",
+      "benefits": ["Greater safety", "Less tire wear", "Better handling"],
+      "price": "$80 - $150",
+      "duration": "1-2 hours",
+      "order": 4,
+      "published": true
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+title: "Diagnóstico Computarizado Avanzado"
+description: "Diagnóstico completo de sistemas electrónicos con equipos de última generación"
+fullDescription: |
+  Utilizamos los equipos de diagnóstico más avanzados del mercado para identificar cualquier problema en los sistemas electrónicos de tu vehículo. Nuestro equipo certificado te proporciona un reporte detallado.
+icon: "Zap"
+image: "/placeholder.svg?height=400&width=600"
+benefits: |
+  Identificación rápida de problemas electrónicos
+  Reporte detallado del sistema de diagnóstico
+  Personal certificado y especializado
+  Equipos de última generación
+  Garantía en el trabajo realizado
+price: "$89 - $149"
+duration: "30-45 minutos"
+order: 1
+published: true

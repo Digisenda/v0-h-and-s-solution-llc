@@ -1,0 +1,17 @@
+title: "Alineación y Balanceo"
+description: "Servicios de alineación de ruedas y balanceo de neumáticos"
+fullDescription: |
+  La alineación y el balanceo adecuados son cruciales para la seguridad y el rendimiento de tu vehículo. Utilizamos equipos de última tecnología para garantizar una alineación perfecta.
+icon: "Cog"
+image: "/placeholder.svg?height=400&width=600"
+benefits: |
+  Equipo de alineación de última generación
+  Mejora la estabilidad y seguridad del vehículo
+  Reduce el desgaste irregular de neumáticos
+  Mejora la economía de combustible
+  Alarga la vida de los neumáticos
+  Incluye inspección de suspensión
+price: "$89 - $199"
+duration: "45 minutos a 1 hora"
+order: 4
+published: true

@@ -1,0 +1,12 @@
+question: "¿Cuáles son los horarios de atención?"
+answer: |
+  Estamos abiertos de **Lunes a Viernes** de 8:00 AM a 5:00 PM.
+  
+  **Sábados** de 9:00 AM a 3:00 PM.
+  
+  **Domingos** estamos cerrados.
+  
+  Para emergencias, por favor llámanos al teléfono de contacto.
+category: "Horarios"
+order: 1
+published: true

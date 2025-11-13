@@ -1,0 +1,10 @@
+name: "Marco Hernández"
+position: "Especialista en A/C"
+specialty: "Sistemas de Aire Acondicionado"
+bio: "Experto en reparación, recarga y mantenimiento de sistemas de aire acondicionado automotriz con herramientas de diagnostico precisas."
+experience: 10
+order: 3
+certifications: |
+  EPA Certified Refrigerant Handler
+  AC System Specialist
+published: true

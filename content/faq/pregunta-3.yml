@@ -1,0 +1,10 @@
+question: "¿Cuál es el costo del diagnóstico computarizado?"
+answer: |
+  El **diagnóstico computarizado** tiene un costo de **$75**.
+  
+  Este diagnóstico es **obligatorio antes de cualquier reparación major** para identificar correctamente los problemas del vehículo.
+  
+  Si decides reparar con nosotros, el costo del diagnóstico se **descuenta de la reparación**.
+category: "Precios"
+order: 1
+published: true

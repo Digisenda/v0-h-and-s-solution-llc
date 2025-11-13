@@ -1,0 +1,11 @@
+name: "Carlos Rodríguez"
+position: "Jefe Mecánico"
+specialty: "Reparación General y Diagnóstico"
+bio: "Con más de 15 años de experiencia en la industria automotriz, Carlos lidera nuestro equipo técnico con precisión y profesionalismo."
+experience: 15
+order: 1
+certifications: |
+  ASE Certified Mechanic
+  Diagnostic Specialist
+  Engine Rebuild Expert
+published: true

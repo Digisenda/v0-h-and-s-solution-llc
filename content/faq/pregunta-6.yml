@@ -1,0 +1,14 @@
+question: "¿Qué métodos de pago aceptan?"
+answer: |
+  Aceptamos múltiples métodos de pago:
+  
+  - **Efectivo**
+  - **Tarjeta de Crédito** (Visa, Mastercard, Amex)
+  - **Tarjeta de Débito**
+  - **Transferencia Bancaria**
+  - **Apple Pay / Google Pay**
+  
+  Para clientes frecuentes, ofrecemos **planes de pago sin interés** en compras superiores a $500.
+category: "General"
+order: 1
+published: true

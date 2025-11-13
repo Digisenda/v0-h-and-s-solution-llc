@@ -1,0 +1,192 @@
+backend:
+  name: github
+  repo: digisenda/hssolutionllc-site
+  branch: main
+  auth_endpoint: /api/decap-github-oauth
+  base_url: https://h-and-s-solutions.vercel.app
+  squash_merges: true
+  commit_messages:
+    create: 'Crear {{collection}}: "{{slug}}"'
+    update: 'Actualizar {{collection}}: "{{slug}}"'
+    delete: 'Eliminar {{collection}}: "{{slug}}"'
+
+media_folder: /public/uploads
+public_path: /uploads
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "home"
+    label: "Página Principal"
+    files:
+      - name: "home_es"
+        label: "Inicio (Español)"
+        file: "content/home.es.json"
+        fields:
+          - { label: "Título Hero", name: "heroTitle", widget: "string" }
+          - { label: "Subtítulo Hero", name: "heroSubtitle", widget: "text" }
+          - { label: "CTA Principal", name: "ctaPrimary", widget: "string" }
+          - { label: "CTA Secundaria", name: "ctaSecondary", widget: "string" }
+      
+      - name: "home_en"
+        label: "Inicio (English)"
+        file: "content/home.en.json"
+        fields:
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+          - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
+          - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+
+  - name: "servicios"
+    label: "Servicios"
+    files:
+      - name: "servicios_es"
+        label: "Servicios (Español)"
+        file: "content/services.es.json"
+        fields:
+          - label: "Servicios"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Descripción Completa", name: "fullDescription", widget: "markdown" }
+              - { label: "Icono", name: "icon", widget: "string" }
+              - { label: "Beneficios", name: "benefits", widget: "list" }
+              - { label: "Precio", name: "price", widget: "string" }
+              - { label: "Duración", name: "duration", widget: "string" }
+              - { label: "Orden", name: "order", widget: "number" }
+              - { label: "Publicado", name: "published", widget: "boolean" }
+
+      - name: "servicios_en"
+        label: "Servicios (English)"
+        file: "content/services.en.json"
+        fields:
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Full Description", name: "fullDescription", widget: "markdown" }
+              - { label: "Icon", name: "icon", widget: "string" }
+              - { label: "Benefits", name: "benefits", widget: "list" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Duration", name: "duration", widget: "string" }
+              - { label: "Order", name: "order", widget: "number" }
+              - { label: "Published", name: "published", widget: "boolean" }
+
+  - name: "about"
+    label: "Acerca de"
+    files:
+      - name: "about_es"
+        label: "Acerca de (Español)"
+        file: "content/about.es.json"
+        fields:
+          - { label: "Título", name: "title", widget: "string" }
+          - { label: "Subtítulo", name: "subtitle", widget: "string" }
+          - { label: "Historia", name: "story", widget: "markdown" }
+          - { label: "Misión", name: "mission", widget: "text" }
+          - { label: "Visión", name: "vision", widget: "text" }
+          - { label: "Valores", name: "values", widget: "list" }
+
+      - name: "about_en"
+        label: "Acerca de (English)"
+        file: "content/about.en.json"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Story", name: "story", widget: "markdown" }
+          - { label: "Mission", name: "mission", widget: "text" }
+          - { label: "Vision", name: "vision", widget: "text" }
+          - { label: "Values", name: "values", widget: "list" }
+
+  - name: "contact"
+    label: "Contacto"
+    files:
+      - name: "contact_es"
+        label: "Contacto (Español)"
+        file: "content/contact.es.json"
+        fields:
+          - { label: "Teléfono 1", name: "phone1", widget: "string" }
+          - { label: "Teléfono 2", name: "phone2", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Dirección", name: "address", widget: "string" }
+          - { label: "Ciudad", name: "city", widget: "string" }
+          - { label: "Estado", name: "state", widget: "string" }
+          - { label: "Código Postal", name: "zipcode", widget: "string" }
+          - { label: "Horarios", name: "hours", widget: "string" }
+
+      - name: "contact_en"
+        label: "Contacto (English)"
+        file: "content/contact.en.json"
+        fields:
+          - { label: "Phone 1", name: "phone1", widget: "string" }
+          - { label: "Phone 2", name: "phone2", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "City", name: "city", widget: "string" }
+          - { label: "State", name: "state", widget: "string" }
+          - { label: "Zip Code", name: "zipcode", widget: "string" }
+          - { label: "Hours", name: "hours", widget: "string" }
+
+  - name: "legal"
+    label: "Legal"
+    files:
+      - name: "terms_es"
+        label: "Términos (Español)"
+        file: "content/legal/terms.es.md"
+        fields:
+          - { label: "Contenido", name: "body", widget: "markdown" }
+
+      - name: "terms_en"
+        label: "Terms (English)"
+        file: "content/legal/terms.en.md"
+        fields:
+          - { label: "Content", name: "body", widget: "markdown" }
+
+      - name: "privacy_es"
+        label: "Privacidad (Español)"
+        file: "content/legal/privacy.es.md"
+        fields:
+          - { label: "Contenido", name: "body", widget: "markdown" }
+
+      - name: "privacy_en"
+        label: "Privacy (English)"
+        file: "content/legal/privacy.en.md"
+        fields:
+          - { label: "Content", name: "body", widget: "markdown" }
+
+  # ... rest of collections remain unchanged ...
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+      - { label: "Imagen", name: "image", widget: "image" }
+      - { label: "Autor", name: "author", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Categoría", name: "category", widget: "select", options: ["Mantenimiento", "Reparación", "Tips", "Noticias"] }
+      - { label: "Publicado", name: "published", widget: "boolean", default: true }
+
+  - name: "galeria"
+    label: "Galería de Trabajos"
+    folder: "content/galeria"
+    create: true
+    slug: "{{slug}}"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Tipo de Servicio", name: "service", widget: "select", options: ["Mantenimiento", "Reparación Motor", "Aire Acondicionado", "Frenos", "Suspensión", "Transmisión", "Otro"] }
+      - { label: "Imagen Antes", name: "imageBefore", widget: "image" }
+      - { label: "Imagen Después", name: "imageAfter", widget: "image" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Publicado", name: "published", widget: "boolean", default: true }

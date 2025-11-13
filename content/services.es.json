@@ -1,0 +1,52 @@
+{
+  "services": [
+    {
+      "slug": "diagnostico-computarizado",
+      "title": "Diagnóstico Computarizado",
+      "description": "Diagnóstico avanzado de sistemas del vehículo",
+      "fullDescription": "Utilizamos los equipos de diagnóstico más avanzados para identificar cualquier problema en tu vehículo",
+      "icon": "Cpu",
+      "benefits": ["Identificación rápida de problemas", "Reporte detallado", "Soluciones precisas"],
+      "price": "$75 - $150",
+      "duration": "1-2 horas",
+      "order": 1,
+      "published": true
+    },
+    {
+      "slug": "mantenimiento-preventivo",
+      "title": "Mantenimiento Preventivo",
+      "description": "Servicios de mantenimiento regular",
+      "fullDescription": "Mantén tu vehículo en óptimas condiciones con nuestros servicios de mantenimiento",
+      "icon": "Wrench",
+      "benefits": ["Mayor durabilidad del vehículo", "Mejor rendimiento", "Menos averías futuras"],
+      "price": "$150 - $300",
+      "duration": "2-3 horas",
+      "order": 2,
+      "published": true
+    },
+    {
+      "slug": "reparacion-motor",
+      "title": "Reparación de Motor",
+      "description": "Reparación completa de motores",
+      "fullDescription": "Reparaciones de motor con garantía de calidad",
+      "icon": "Zap",
+      "benefits": ["Reparación profesional", "Garantía de trabajo", "Piezas de calidad"],
+      "price": "$500 - $2000",
+      "duration": "Varios días",
+      "order": 3,
+      "published": true
+    },
+    {
+      "slug": "alineacion-balanceo",
+      "title": "Alineación y Balanceo",
+      "description": "Alineación de ruedas y balanceo profesional",
+      "fullDescription": "Servicios de alineación de ruedas y balanceo de neumáticos con precisión",
+      "icon": "RotateCw",
+      "benefits": ["Mayor seguridad", "Menor desgaste de llantas", "Mejor manejo"],
+      "price": "$80 - $150",
+      "duration": "1-2 horas",
+      "order": 4,
+      "published": true
+    }
+  ]
+}

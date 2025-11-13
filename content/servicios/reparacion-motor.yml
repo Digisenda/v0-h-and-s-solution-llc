@@ -1,0 +1,17 @@
+title: "Reparación de Motor"
+description: "Diagnóstico y reparación profesional de motores con garantía"
+fullDescription: |
+  Nuestro equipo de mecánicos especialistas tiene la experiencia necesaria para diagnosticar y reparar cualquier problema de motor. Desde problemas menores hasta reconstrucciones completas, nos encargamos de todo.
+icon: "Zap"
+image: "/placeholder.svg?height=400&width=600"
+benefits: |
+  Diagnóstico completo del motor
+  Reparación profesional con personal certificado
+  Garantía de 12 meses en partes y mano de obra
+  Uso de piezas de calidad OEM
+  Pruebas exhaustivas post-reparación
+  Atención personalizada y seguimiento
+price: "$500 - $3,000+"
+duration: "Varía según el problema"
+order: 3
+published: true
