@@ -1,12 +1,9 @@
-
-import type React from "react"
 import Link from "next/link"
 import { getServices } from "@/lib/content-loader"
 import type { Service } from "@/lib/content-loader"
-import { Wrench, Zap, Wind, Cog, Shield, Hammer } from 'lucide-react'
-import { useEffect, useState } from "react"
+import { Wrench, Zap, Wind, Cog, Shield, Hammer } from "lucide-react"
 
-const iconMap: Record<string, React.ComponentType<{ size: number; className: string }>> = {
+const iconMap: Record<string, (props: { size: number; className: string }) => JSX.Element> = {
   Wrench,
   Zap,
   Wind,
@@ -22,7 +19,7 @@ export const metadata = {
 
 export default async function ServiciosPage() {
   const servicesData = await getServices()
-  const services = Array.isArray(servicesData) ? servicesData : []
+  const services = Array.isArray(servicesData) ? (servicesData as Service[]) : []
 
   return (
     <main className="min-h-screen bg-background">
@@ -51,23 +48,32 @@ export default async function ServiciosPage() {
                     className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     <div className="relative h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center overflow-hidden">
-                      {service.image && (
+                      {service.image ? (
                         <img
-                          src={service.image || "/placeholder.svg"}
+                          src={service.image}
                           alt={service.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
+                      ) : (
+                        <IconComponent size={48} className="text-primary" />
                       )}
-                      {!service.image && <IconComponent size={48} className="text-primary" />}
                     </div>
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
                         {service.name}
                       </h3>
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{service.description}</p>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {service.description}
+                      </p>
                       <div className="flex justify-between items-end">
-                        {service.price && <span className="text-accent font-semibold">{service.price}</span>}
-                        {service.duration && <span className="text-xs text-muted-foreground">{service.duration}</span>}
+                        {service.price && (
+                          <span className="text-accent font-semibold">{service.price}</span>
+                        )}
+                        {service.duration && (
+                          <span className="text-xs text-muted-foreground">
+                            {service.duration}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </Link>
