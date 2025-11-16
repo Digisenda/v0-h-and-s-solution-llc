@@ -193,7 +193,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 export async function getTermsAndConditions(): Promise<LegalPage | null> {
   return {
     title: "Términos y Condiciones",
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: "2024-01-01T00:00:00.000Z",
     content: "Términos y condiciones pendiente de actualizar",
     published: true,
   }
@@ -202,7 +202,7 @@ export async function getTermsAndConditions(): Promise<LegalPage | null> {
 export async function getPrivacyPolicy(): Promise<LegalPage | null> {
   return {
     title: "Política de Privacidad",
-    lastUpdated: new Date().toISOString(),
+    lastUpdated: "2024-01-01T00:00:00.000Z",
     content: "Política de privacidad pendiente de actualizar",
     published: true,
   }

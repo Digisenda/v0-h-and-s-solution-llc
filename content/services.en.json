@@ -2,7 +2,7 @@
   "services": [
     {
       "slug": "diagnostico-computarizado",
-      "title": "Computer Diagnostics",
+      "name": "Computer Diagnostics",
       "description": "Advanced vehicle system diagnostics",
       "fullDescription": "We use the most advanced diagnostic equipment to identify any problem in your vehicle",
       "icon": "Cpu",
@@ -14,7 +14,7 @@
     },
     {
       "slug": "mantenimiento-preventivo",
-      "title": "Preventive Maintenance",
+      "name": "Preventive Maintenance",
       "description": "Regular maintenance services",
       "fullDescription": "Keep your vehicle in optimal condition with our maintenance services",
       "icon": "Wrench",
@@ -26,7 +26,7 @@
     },
     {
       "slug": "reparacion-motor",
-      "title": "Engine Repair",
+      "name": "Engine Repair",
       "description": "Complete engine repairs",
       "fullDescription": "Engine repairs with quality guarantee",
       "icon": "Zap",
@@ -38,7 +38,7 @@
     },
     {
       "slug": "alineacion-balanceo",
-      "title": "Alignment and Balancing",
+      "name": "Alignment and Balancing",
       "description": "Professional wheel alignment and balancing",
       "fullDescription": "Wheel alignment and tire balancing services with precision",
       "icon": "RotateCw",

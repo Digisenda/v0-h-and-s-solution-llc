@@ -2,7 +2,7 @@
   "services": [
     {
       "slug": "diagnostico-computarizado",
-      "title": "Diagnóstico Computarizado",
+      "name": "Diagnóstico Computarizado",
       "description": "Diagnóstico avanzado de sistemas del vehículo",
       "fullDescription": "Utilizamos los equipos de diagnóstico más avanzados para identificar cualquier problema en tu vehículo",
       "icon": "Cpu",
@@ -14,7 +14,7 @@
     },
     {
       "slug": "mantenimiento-preventivo",
-      "title": "Mantenimiento Preventivo",
+      "name": "Mantenimiento Preventivo",
       "description": "Servicios de mantenimiento regular",
       "fullDescription": "Mantén tu vehículo en óptimas condiciones con nuestros servicios de mantenimiento",
       "icon": "Wrench",
@@ -26,7 +26,7 @@
     },
     {
       "slug": "reparacion-motor",
-      "title": "Reparación de Motor",
+      "name": "Reparación de Motor",
       "description": "Reparación completa de motores",
       "fullDescription": "Reparaciones de motor con garantía de calidad",
       "icon": "Zap",
@@ -38,7 +38,7 @@
     },
     {
       "slug": "alineacion-balanceo",
-      "title": "Alineación y Balanceo",
+      "name": "Alineación y Balanceo",
       "description": "Alineación de ruedas y balanceo profesional",
       "fullDescription": "Servicios de alineación de ruedas y balanceo de neumáticos con precisión",
       "icon": "RotateCw",
