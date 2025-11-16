@@ -6,7 +6,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button"
 
 const categories = ["General", "Servicios", "Precios", "Garantía", "Horarios"]
-const faqs = getFAQs()
+
+// Obtenemos las FAQs crudas
+const rawFaqs = getFAQs()
+
+// Normalizamos para que SIEMPRE sea un array
+const faqs = Array.isArray(rawFaqs)
+  ? rawFaqs
+  : Array.isArray((rawFaqs as any)?.items)
+  ? (rawFaqs as any).items
+  : []
 
 export default function FAQPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("General")
