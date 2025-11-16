@@ -184,3 +184,4 @@ El sitio estará disponible en \`http://localhost:3000\` y el CMS en \`http://lo
 - Decap CMS: https://decapcms.org/docs
 - Next.js: https://nextjs.org/docs
 - Para problemas de GitHub OAuth, verifica las credenciales en Vercel
+- esta edicion es solo de prueba para vercel
