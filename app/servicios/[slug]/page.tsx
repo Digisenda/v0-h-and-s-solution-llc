@@ -1,12 +1,15 @@
-import { getService } from "@/lib/content-loader"
+import { getService, getServices } from "@/lib/content-loader"
 import { notFound } from 'next/navigation'
 import Link from "next/link"
 import type { Service } from "@/lib/content-loader"
 import { ChevronLeft, Check } from 'lucide-react'
 
 export async function generateStaticParams() {
-  // Placeholder - dynamic routes will be on-demand
-  return []
+  const services = await getServices("es")
+  
+  return services.map((service) => ({
+    slug: service.slug,
+  }))
 }
 
 export async function generateMetadata({
