@@ -1,57 +1,44 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { useParams } from "next/navigation"
 import { getService } from "@/lib/content-loader"
+import { notFound } from 'next/navigation'
+import Link from "next/link"
 import type { Service } from "@/lib/content-loader"
-import { ChevronLeft, Check } from "lucide-react"
+import { ChevronLeft, Check } from 'lucide-react'
 
-export default function ServiceDetailPage() {
-  const params = useParams()
-  const slug = params.slug as string
-  const [service, setService] = useState<Service | null>(null)
-  const [loading, setLoading] = useState(true)
+export async function generateStaticParams() {
+  // Placeholder - dynamic routes will be on-demand
+  return []
+}
 
-  useEffect(() => {
-    async function loadService() {
-      try {
-        const data = await getService(slug)
-        setService(data)
-      } catch (error) {
-        console.error("[v0] Error loading service:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    if (slug) {
-      loadService()
-    }
-  }, [slug])
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Cargando servicio...</p>
-        </div>
-      </div>
-    )
-  }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const service = await getService(slug)
 
   if (!service) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Servicio no encontrado</h1>
-          <Link href="/servicios" className="text-accent hover:text-accent/90">
-            Volver a servicios
-          </Link>
-        </div>
-      </div>
-    )
+    return {
+      title: "Servicio no encontrado",
+    }
+  }
+
+  return {
+    title: service.name,
+    description: service.description,
+  }
+}
+
+export default async function ServiceDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const service = await getService(slug)
+
+  if (!service) {
+    notFound()
   }
 
   return (
@@ -79,13 +66,13 @@ export default function ServiceDetailPage() {
                 <div className="relative h-64 md:h-96 rounded-lg overflow-hidden mb-8">
                   <img
                     src={service.image || "/placeholder.svg"}
-                    alt={service.title}
+                    alt={service.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
               )}
 
-              <h1 className="text-4xl font-bold text-foreground mb-4">{service.title}</h1>
+              <h1 className="text-4xl font-bold text-foreground mb-4">{service.name}</h1>
 
               <div className="prose prose-invert max-w-none mb-8">
                 {service.fullDescription && (
@@ -94,7 +81,7 @@ export default function ServiceDetailPage() {
               </div>
 
               {/* Benefits */}
-              {service.benefits && service.benefits.length > 0 && (
+              {service.benefits && Array.isArray(service.benefits) && service.benefits.length > 0 && (
                 <div className="bg-card border border-border rounded-lg p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-6">Beneficios</h2>
                   <ul className="space-y-4">

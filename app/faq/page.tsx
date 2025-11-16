@@ -7,21 +7,14 @@ import { Button } from "@/components/ui/button"
 
 const categories = ["General", "Servicios", "Precios", "Garantía", "Horarios"]
 
-// Obtenemos las FAQs crudas
-const rawFaqs = getFAQs()
+export const metadata = {
+  title: "Preguntas Frecuentes - H&S Solutions LLC",
+  description: "Respuestas a preguntas frecuentes sobre nuestros servicios automotrices",
+}
 
-// Normalizamos para que SIEMPRE sea un array
-const faqs = Array.isArray(rawFaqs)
-  ? rawFaqs
-  : Array.isArray((rawFaqs as any)?.items)
-  ? (rawFaqs as any).items
-  : []
-
-export default function FAQPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("General")
-  const [isLoading, setIsLoading] = useState(false)
-
-  const filteredFAQs = faqs.filter((faq) => faq.category === selectedCategory)
+export default async function FAQPage() {
+  const allFaqs = await getFAQs()
+  const faqs = Array.isArray(allFaqs) ? allFaqs : []
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
@@ -37,46 +30,7 @@ export default function FAQPage() {
 
       {/* Category Filter */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-wrap gap-3 justify-center mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              variant={selectedCategory === category ? "default" : "outline"}
-              className={selectedCategory === category ? "bg-primary text-primary-foreground" : ""}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
-        {/* FAQ Accordions */}
-        {isLoading ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">Cargando preguntas frecuentes...</p>
-          </div>
-        ) : filteredFAQs.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">No hay preguntas en esta categoría.</p>
-          </div>
-        ) : (
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {filteredFAQs.map((faq) => (
-              <AccordionItem
-                key={faq.slug}
-                value={faq.slug}
-                className="bg-card border border-border rounded-lg px-6 py-2 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <AccordionTrigger className="py-4 text-lg font-semibold text-foreground hover:text-primary hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-foreground/80 leading-relaxed pt-2 pb-4">
-                  <div className="prose prose-sm max-w-none dark:prose-invert">{faq.answer}</div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        )}
+        <FAQContent allFaqs={faqs} />
       </section>
 
       {/* CTA Section */}
@@ -96,5 +50,52 @@ export default function FAQPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+function FAQContent({ allFaqs }: { allFaqs: any[] }) {
+  "use client"
+  const [selectedCategory, setSelectedCategory] = useState<string>("General")
+  const categories = ["General", "Servicios", "Precios", "Garantía", "Horarios"]
+  const filteredFAQs = allFaqs.filter((faq) => faq.category === selectedCategory)
+
+  return (
+    <>
+      <div className="flex flex-wrap gap-3 justify-center mb-12">
+        {categories.map((category) => (
+          <Button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            variant={selectedCategory === category ? "default" : "outline"}
+            className={selectedCategory === category ? "bg-primary text-primary-foreground" : ""}
+          >
+            {category}
+          </Button>
+        ))}
+      </div>
+
+      {filteredFAQs.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No hay preguntas en esta categoría.</p>
+        </div>
+      ) : (
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          {filteredFAQs.map((faq) => (
+            <AccordionItem
+              key={faq.slug}
+              value={faq.slug}
+              className="bg-card border border-border rounded-lg px-6 py-2 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <AccordionTrigger className="py-4 text-lg font-semibold text-foreground hover:text-primary hover:no-underline">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-foreground/80 leading-relaxed pt-2 pb-4">
+                <div className="prose prose-sm max-w-none dark:prose-invert">{faq.answer}</div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      )}
+    </>
   )
 }

@@ -4,7 +4,7 @@ import type React from "react"
 import Link from "next/link"
 import { getServices } from "@/lib/content-loader"
 import type { Service } from "@/lib/content-loader"
-import { Wrench, Zap, Wind, Cog, Shield, Hammer } from "lucide-react"
+import { Wrench, Zap, Wind, Cog, Shield, Hammer } from 'lucide-react'
 import { useEffect, useState } from "react"
 
 const iconMap: Record<string, React.ComponentType<{ size: number; className: string }>> = {
@@ -16,35 +16,14 @@ const iconMap: Record<string, React.ComponentType<{ size: number; className: str
   Hammer,
 }
 
-export default function ServiciosPage() {
-  const [services, setServices] = useState<Service[]>([])
-  const [loading, setLoading] = useState(true)
+export const metadata = {
+  title: "Servicios - H&S Solutions LLC",
+  description: "Servicios completos de mantenimiento y reparación automotriz",
+}
 
-  useEffect(() => {
-    async function loadServices() {
-      try {
-        const data = await getServices()
-        setServices(data)
-      } catch (error) {
-        console.error("[v0] Error loading services:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadServices()
-  }, [])
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Cargando servicios...</p>
-        </div>
-      </div>
-    )
-  }
+export default async function ServiciosPage() {
+  const servicesData = await getServices()
+  const services = Array.isArray(servicesData) ? servicesData : []
 
   return (
     <main className="min-h-screen bg-background">
@@ -76,7 +55,7 @@ export default function ServiciosPage() {
                       {service.image && (
                         <img
                           src={service.image || "/placeholder.svg"}
-                          alt={service.title}
+                          alt={service.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
                       )}
@@ -84,7 +63,7 @@ export default function ServiciosPage() {
                     </div>
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
-                        {service.title}
+                        {service.name}
                       </h3>
                       <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{service.description}</p>
                       <div className="flex justify-between items-end">
