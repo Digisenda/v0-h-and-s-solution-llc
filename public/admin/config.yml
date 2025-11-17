@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: digisenda/hssolutionllc-site
+  repo: digisenda/v0-h-and-s-solution-llc
   branch: main
   auth_endpoint: /api/decap-github-oauth
   base_url: https://www.hssolutionllc.com
