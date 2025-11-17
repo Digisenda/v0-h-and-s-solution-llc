@@ -3,10 +3,21 @@
 
 import { type NextRequest, NextResponse } from "next/server"
 
+const CLIENT_ID = process.env.DECAP_GITHUB_CLIENT_ID
+const CLIENT_SECRET = process.env.DECAP_GITHUB_CLIENT_SECRET
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const code = searchParams.get("code")
   const state = searchParams.get("state")
+
+  if (!CLIENT_ID || !CLIENT_SECRET) {
+    console.error("Missing Decap GitHub OAuth env vars")
+    return NextResponse.json(
+      { error: "Server misconfiguration: missing OAuth credentials" },
+      { status: 500 }
+    )
+  }
 
   if (!code) {
     return NextResponse.json({ error: "No authorization code received" }, { status: 400 })
@@ -21,8 +32,8 @@ export async function GET(request: NextRequest) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        client_id: process.env.GITHUB_OAUTH_CLIENT_ID,
-        client_secret: process.env.GITHUB_OAUTH_CLIENT_SECRET,
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
         code,
       }),
     })
@@ -30,20 +41,38 @@ export async function GET(request: NextRequest) {
     const tokenData = await tokenResponse.json()
 
     if (tokenData.error) {
-      return NextResponse.json({ error: tokenData.error_description || "OAuth failed" }, { status: 400 })
+      return NextResponse.json(
+        { error: tokenData.error_description || tokenData.error || "OAuth failed" },
+        { status: 400 }
+      )
     }
 
-    // Return token to Decap CMS
+    if (!tokenData.access_token) {
+      return NextResponse.json(
+        { error: "No access token received from GitHub" },
+        { status: 400 }
+      )
+    }
+
+    // Build safe JS object for the CMS response
+    const msg = {
+      token: tokenData.access_token,
+      provider: "github",
+    }
+
     const htmlResponse = `
       <html>
         <body>
           <script>
-            const msg = {
-              token: '${tokenData.access_token}',
-              provider: 'github'
-            };
-            window.opener.postMessage(msg, window.location.origin);
-            window.close();
+            (function() {
+              const msg = ${JSON.stringify(msg)};
+              if (window.opener) {
+                window.opener.postMessage(msg, window.location.origin);
+                window.close();
+              } else {
+                console.error("No opener window found for Decap CMS OAuth");
+              }
+            })();
           </script>
         </body>
       </html>
