@@ -10,7 +10,7 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "H&S Solution LLC - Taller Automotriz Profesional en San Antonio, TX",
   description:
-    "Servicios automotrices profesionales en San Antonio, Texas. Reparación, mantenimiento preventivo y diagnóstico computarizado con garantía de calidad. Llama hoy: (210) 555-0123",
+    "Servicios automotrices profesionales en San Antonio, Texas. Reparación, mantenimiento preventivo y diagnóstico computarizado con garantía de calidad. Llama hoy: (210) 812-6833",
   keywords: [
     "taller automotriz San Antonio",
     "reparación de autos San Antonio TX",
