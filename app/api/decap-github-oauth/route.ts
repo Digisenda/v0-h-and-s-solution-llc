@@ -1,18 +1,21 @@
 // GitHub OAuth endpoint for Decap CMS
 // Paso 1: si no hay "code", redirige a GitHub /authorize
 // Paso 2: si hay "code", intercambia por access_token y se lo devuelve a Decap
+// usando el formato de postMessage que Decap espera.
 
 import { type NextRequest, NextResponse } from "next/server"
 
 const CLIENT_ID = process.env.DECAP_GITHUB_CLIENT_ID
 const CLIENT_SECRET = process.env.DECAP_GITHUB_CLIENT_SECRET
 
+// IMPORTANTE: origen EXACTO del sitio (con www)
+const SITE_ORIGIN = "https://www.hssolutionllc.com"
+
 export async function GET(request: NextRequest) {
   const url = new URL(request.url)
   const searchParams = url.searchParams
 
   const code = searchParams.get("code")
-  // Decap suele mandar site_id en "state"; lo reaprovechamos
   const state = searchParams.get("state") ?? searchParams.get("site_id") ?? ""
 
   if (!CLIENT_ID || !CLIENT_SECRET) {
@@ -25,8 +28,7 @@ export async function GET(request: NextRequest) {
 
   // 1) PRIMER PASO: no hay "code" -> redirijo a GitHub /authorize
   if (!code) {
-    const origin = url.origin
-    const redirectUri = `${origin}/api/decap-github-oauth`
+    const redirectUri = `${SITE_ORIGIN}/api/decap-github-oauth`
 
     const authorizeUrl = new URL("https://github.com/login/oauth/authorize")
     authorizeUrl.searchParams.set("client_id", CLIENT_ID)
@@ -41,8 +43,7 @@ export async function GET(request: NextRequest) {
 
   // 2) SEGUNDO PASO: ya viene "code" desde GitHub -> intercambio por token
   try {
-    const origin = url.origin
-    const redirectUri = `${origin}/api/decap-github-oauth`
+    const redirectUri = `${SITE_ORIGIN}/api/decap-github-oauth`
 
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
@@ -75,28 +76,39 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const msg = {
-      token: tokenData.access_token,
-      provider: "github",
-    }
+    const accessToken = tokenData.access_token
 
+    // HTML que habla con Decap usando el protocolo correcto
     const htmlResponse = `
+      <!DOCTYPE html>
       <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>GitHub Auth Success</title>
+        </head>
         <body>
+          <p>Autenticación correcta, cerrando ventana…</p>
           <script>
             (function() {
-              const msg = ${JSON.stringify(msg)};
-              if (window.opener) {
-                window.opener.postMessage(msg, window.location.origin);
+              // Paso 1: handshake
+              window.opener.postMessage("authorizing:github", "${SITE_ORIGIN}");
+
+              // Paso 2: enviar token en el formato STRING que Decap espera
+              setTimeout(function() {
+                window.opener.postMessage(
+                  'authorization:github:success:' + JSON.stringify({
+                    token: "${accessToken}",
+                    provider: "github"
+                  }),
+                  "${SITE_ORIGIN}"
+                );
                 window.close();
-              } else {
-                console.error("No opener window found for Decap CMS OAuth");
-              }
+              }, 100);
             })();
           </script>
         </body>
       </html>
-    `
+    `;
 
     return new NextResponse(htmlResponse, {
       headers: { "Content-Type": "text/html" },
