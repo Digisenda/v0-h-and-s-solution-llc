@@ -2,8 +2,11 @@ import { ContactForm } from "@/components/contact-form"
 import { getContactInfo } from "@/lib/content-loader"
 
 export const metadata = {
-  title: "Contacto - H&S Solutions LLC",
-  description: "Ponte en contacto con H&S Solutions para solicitar nuestros servicios automotrices",
+  title: "Contacto - H&S Solution LLC",
+  description: "Ponte en contacto con H&S Solution LLC para solicitar nuestros servicios automotrices en San Antonio, TX",
+  alternates: {
+    canonical: "/contacto",
+  },
 }
 
 export default async function ContactPage() {

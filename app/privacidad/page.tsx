@@ -3,8 +3,11 @@ import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 
 export const metadata = {
-  title: "Política de Privacidad - H&S Solutions LLC",
-  description: "Política de privacidad de H&S Solutions LLC",
+  title: "Política de Privacidad - H&S Solution LLC",
+  description: "Política de privacidad de H&S Solution LLC",
+  alternates: {
+    canonical: "/privacidad",
+  },
 }
 
 export default async function PrivacidadPage() {

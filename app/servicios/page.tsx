@@ -13,8 +13,11 @@ const iconMap: Record<string, (props: { size: number; className: string }) => JS
 }
 
 export const metadata = {
-  title: "Servicios - H&S Solutions LLC",
-  description: "Servicios completos de mantenimiento y reparación automotriz",
+  title: "Servicios - H&S Solution LLC",
+  description: "Servicios completos de mantenimiento y reparación automotriz en San Antonio, TX",
+  alternates: {
+    canonical: "/servicios",
+  },
 }
 
 export default async function ServiciosPage() {
