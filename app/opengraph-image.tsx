@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "H&S Solutions LLC - Taller Automotriz Profesional"
+export const alt = "H&S Solution LLC - Taller Automotriz Profesional"
 export const size = {
   width: 1200,
   height: 630,
@@ -40,7 +40,7 @@ export default async function Image() {
               display: "flex",
             }}
           >
-            H&S Solutions LLC
+            H&S Solution LLC
           </div>
           <div
             style={{

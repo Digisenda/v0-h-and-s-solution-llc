@@ -27,7 +27,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${service.name} - H&S Solutions LLC`,
+    title: `${service.name} - H&S Solution LLC`,
     description: `${service.fullDescription || service.description} Servicio profesional en San Antonio, TX. Precio: ${service.price}. Duración: ${service.duration}.`,
     keywords: [
       service.name,
@@ -36,8 +36,11 @@ export async function generateMetadata({
       "mantenimiento",
       slug,
     ],
+    alternates: {
+      canonical: `/servicios/${slug}`,
+    },
     openGraph: {
-      title: `${service.name} - H&S Solutions LLC`,
+      title: `${service.name} - H&S Solution LLC`,
       description: service.description,
       type: "website",
     },

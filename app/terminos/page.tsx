@@ -3,8 +3,11 @@ import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 
 export const metadata = {
-  title: "Términos y Condiciones - H&S Solutions LLC",
-  description: "Términos y condiciones de uso del sitio web de H&S Solutions LLC",
+  title: "Términos y Condiciones - H&S Solution LLC",
+  description: "Términos y condiciones de uso del sitio web de H&S Solution LLC",
+  alternates: {
+    canonical: "/terminos",
+  },
 }
 
 export default async function TerminosPage() {

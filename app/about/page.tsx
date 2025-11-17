@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Acerca de Nosotros | H&S Solution LLC",
   description:
     "Conoce la historia, equipo y valores de H&S Solution LLC, tu taller automotriz de confianza en San Antonio.",
+  alternates: {
+    canonical: "/about",
+  },
 }
 
 export default async function AboutPage() {

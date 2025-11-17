@@ -2,7 +2,7 @@ import { MetadataRoute } from "next"
 import { getServices } from "@/lib/content-loader"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://h-and-s-solutions.vercel.app"
+  const baseUrl = "https://www.hssolutionllc.com"
 
   // Get dynamic service slugs
   const services = await getServices("es")
