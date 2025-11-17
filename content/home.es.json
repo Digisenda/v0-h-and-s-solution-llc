@@ -2,14 +2,14 @@
   "hero": {
     "titleAccent": "confianza",
     "badge": "Más de 15 años de experiencia",
-    "ctaSecondary": "(210) 812-6823",
+    "ctaSecondary": "(210) 812-6833",
     "visualEmoji": "🔧",
     "ctaPrimaryLink": "#contacto",
     "visualText": "Servicio Premium",
     "ctaPrimary": "Agendar Cita",
     "title": "Tu taller automotriz de",
     "description": "Servicio profesional con garantía. Reparación, mantenimiento y diagnóstico completo para todos los vehículos.",
-    "ctaSecondaryLink": "tel:+12108126823"
+    "ctaSecondaryLink": "tel:+12108126833"
   },
   "stats": {
     "clients": {
@@ -35,10 +35,10 @@
     "title": "Lo Que Dicen Nuestros Clientes"
   },
   "ctaSection": {
-    "phoneValue": "(210) 555-0123",
+    "phoneValue": "(210) 812-6833",
     "ctaSecondary": "Enviar Email",
     "phoneLabel": "Teléfono",
-    "ctaPrimaryLink": "tel:+12105550123",
+    "ctaPrimaryLink": "tel:+12108126833",
     "ctaPrimary": "Llamar Ahora",
     "emailValue": "plus@hssolutionllc.com",
     "emailLabel": "Email",
