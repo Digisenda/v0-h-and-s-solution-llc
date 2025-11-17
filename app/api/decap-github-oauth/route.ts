@@ -1,5 +1,6 @@
 // GitHub OAuth endpoint for Decap CMS
-// Handles the OAuth callback from GitHub
+// Paso 1: si no hay "code", redirige a GitHub /authorize
+// Paso 2: si hay "code", intercambia por access_token y se lo devuelve a Decap
 
 import { type NextRequest, NextResponse } from "next/server"
 
@@ -7,9 +8,12 @@ const CLIENT_ID = process.env.DECAP_GITHUB_CLIENT_ID
 const CLIENT_SECRET = process.env.DECAP_GITHUB_CLIENT_SECRET
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
+  const url = new URL(request.url)
+  const searchParams = url.searchParams
+
   const code = searchParams.get("code")
-  const state = searchParams.get("state")
+  // Decap suele mandar site_id en "state"; lo reaprovechamos
+  const state = searchParams.get("state") ?? searchParams.get("site_id") ?? ""
 
   if (!CLIENT_ID || !CLIENT_SECRET) {
     console.error("Missing Decap GitHub OAuth env vars")
@@ -19,12 +23,27 @@ export async function GET(request: NextRequest) {
     )
   }
 
+  // 1) PRIMER PASO: no hay "code" -> redirijo a GitHub /authorize
   if (!code) {
-    return NextResponse.json({ error: "No authorization code received" }, { status: 400 })
+    const origin = url.origin
+    const redirectUri = `${origin}/api/decap-github-oauth`
+
+    const authorizeUrl = new URL("https://github.com/login/oauth/authorize")
+    authorizeUrl.searchParams.set("client_id", CLIENT_ID)
+    authorizeUrl.searchParams.set("redirect_uri", redirectUri)
+    authorizeUrl.searchParams.set("scope", "repo")
+    if (state) {
+      authorizeUrl.searchParams.set("state", state)
+    }
+
+    return NextResponse.redirect(authorizeUrl.toString())
   }
 
+  // 2) SEGUNDO PASO: ya viene "code" desde GitHub -> intercambio por token
   try {
-    // Exchange code for access token
+    const origin = url.origin
+    const redirectUri = `${origin}/api/decap-github-oauth`
+
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
       headers: {
@@ -35,12 +54,14 @@ export async function GET(request: NextRequest) {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         code,
+        redirect_uri: redirectUri,
       }),
     })
 
     const tokenData = await tokenResponse.json()
 
     if (tokenData.error) {
+      console.error("GitHub OAuth error:", tokenData)
       return NextResponse.json(
         { error: tokenData.error_description || tokenData.error || "OAuth failed" },
         { status: 400 }
@@ -54,7 +75,6 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Build safe JS object for the CMS response
     const msg = {
       token: tokenData.access_token,
       provider: "github",
