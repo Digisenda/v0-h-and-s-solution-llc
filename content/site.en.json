@@ -6,8 +6,8 @@
     "image": ""
   },
   "contact": {
-    "phone": "(210) 555-0123",
-    "phoneLink": "tel:+12105550123",
+    "phone": "(210) 812-6833",
+    "phoneLink": "tel:+8126833",
     "email": "plus@hssolutionllc.com",
     "emailLink": "mailto:plus@hssolutionllc.com",
     "location": "San Antonio, TX"
@@ -27,19 +27,19 @@
     "viewAll": "View all"
   },
   "footer": {
+    "terms": "Terms",
+    "legalContact": "Legal Contact",
+    "diagnostic": "Diagnostic",
+    "copyright": "All rights reserved",
+    "termsAndConditions": "Terms and Conditions",
+    "privacy": "Privacy",
+    "repair": "Repair",
+    "maintenance": "Maintenance",
+    "servicesTitle": "Services",
+    "privacyPolicy": "Privacy Policy",
+    "companyTitle": "Company",
     "description": "Professional automotive service with warranty",
     "linksTitle": "Links",
-    "servicesTitle": "Services",
-    "companyTitle": "Company",
-    "legalTitle": "Legal",
-    "copyright": "All rights reserved",
-    "terms": "Terms",
-    "privacy": "Privacy",
-    "termsAndConditions": "Terms and Conditions",
-    "privacyPolicy": "Privacy Policy",
-    "legalContact": "Legal Contact",
-    "maintenance": "Maintenance",
-    "repair": "Repair",
-    "diagnostic": "Diagnostic"
+    "legalTitle": "Legal"
   }
 }
