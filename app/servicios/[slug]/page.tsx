@@ -132,7 +132,7 @@ export default async function ServiceDetailPage({
                 )}
 
                 <Link
-                  href={`tel:+12105550123`}
+                  href="tel:+12108126833"
                   className="block w-full bg-background text-foreground font-bold py-3 px-4 rounded-lg text-center hover:opacity-90 transition-opacity mb-3"
                 >
                   Solicitar Servicio
@@ -158,7 +158,7 @@ export default async function ServiceDetailPage({
             Contacta con nosotros hoy y recibe una atención personalizada
           </p>
           <Link
-            href="tel:+12105550123"
+            href="tel:+12108126833"
             className="inline-block bg-accent text-accent-foreground font-bold py-3 px-8 rounded-full hover:opacity-90 transition-opacity"
           >
             Llamar Ahora
