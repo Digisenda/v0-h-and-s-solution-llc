@@ -27,8 +27,20 @@ export async function generateMetadata({
   }
 
   return {
-    title: service.name,
-    description: service.description,
+    title: `${service.name} - H&S Solutions LLC`,
+    description: `${service.fullDescription || service.description} Servicio profesional en San Antonio, TX. Precio: ${service.price}. Duración: ${service.duration}.`,
+    keywords: [
+      service.name,
+      "servicio automotriz San Antonio",
+      "reparación",
+      "mantenimiento",
+      slug,
+    ],
+    openGraph: {
+      title: `${service.name} - H&S Solutions LLC`,
+      description: service.description,
+      type: "website",
+    },
   }
 }
 
