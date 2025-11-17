@@ -27,19 +27,19 @@
     "viewAll": "Ver todos"
   },
   "footer": {
+    "terms": "Términos",
+    "legalContact": "Contacto Legal",
+    "diagnostic": "Diagnóstico",
+    "copyright": "Todos los derechos reservados",
+    "termsAndConditions": "Términos y Condiciones",
+    "privacy": "Privacidad",
+    "repair": "Reparación",
+    "maintenance": "Mantenimiento",
+    "servicesTitle": "Servicios",
+    "privacyPolicy": "Política de Privacidad",
+    "companyTitle": "Empresa",
     "description": "Servicio automotriz profesional con garantía",
     "linksTitle": "Enlaces",
-    "servicesTitle": "Servicios",
-    "companyTitle": "Empresa",
-    "legalTitle": "Legal",
-    "copyright": "Todos los derechos reservados",
-    "terms": "Términos",
-    "privacy": "Privacidad",
-    "termsAndConditions": "Términos y Condiciones",
-    "privacyPolicy": "Política de Privacidad",
-    "legalContact": "Contacto Legal",
-    "maintenance": "Mantenimiento",
-    "repair": "Reparación",
-    "diagnostic": "Diagnóstico"
+    "legalTitle": "Legal"
   }
 }
