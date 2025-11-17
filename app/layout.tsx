@@ -89,7 +89,7 @@ export default function RootLayout({
     image: `${SITE_URL}/og-image.jpg`,
     description:
       "Servicios automotrices profesionales en San Antonio, Texas. Reparación, mantenimiento preventivo y diagnóstico computarizado.",
-    telephone: "(210) 555-0123", // TODO: Replace with actual phone
+    telephone: "(210) 812-6833",
     email: "plus@hssolutionllc.com",
     address: {
       "@type": "PostalAddress",
