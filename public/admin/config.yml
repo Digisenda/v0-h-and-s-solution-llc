@@ -10,7 +10,7 @@ backend:
     update: 'Actualizar {{collection}}: "{{slug}}"'
     delete: 'Eliminar {{collection}}: "{{slug}}"'
 
-media_folder: public/uploads
+media_folder: /public/uploads
 public_folder: /uploads
 
 publish_mode: editorial_workflow
