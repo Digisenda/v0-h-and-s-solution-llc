@@ -1,7 +1,14 @@
 import Link from "next/link"
 import { ArrowRight, Phone } from "lucide-react"
+import type { HomeContent } from "@/lib/content-loader"
 
-export default function Hero() {
+interface HeroProps {
+  content: HomeContent
+}
+
+export default function Hero({ content }: HeroProps) {
+  const { hero, stats } = content
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
@@ -12,49 +19,46 @@ export default function Hero() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="inline-block bg-accent/10 px-4 py-2 rounded-full border border-accent/20">
-              <p className="text-accent font-semibold text-sm">Más de 15 años de experiencia</p>
+              <p className="text-accent font-semibold text-sm">{hero.badge}</p>
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight text-pretty">
-              Tu taller automotriz de
-              <span className="text-accent"> confianza</span>
+              {hero.title}
+              <span className="text-accent"> {hero.titleAccent}</span>
             </h1>
 
-            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Servicio profesional con garantía. Reparación, mantenimiento y diagnóstico completo para todos los
-              vehículos.
-            </p>
+            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">{hero.description}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
-                href="#contacto"
+                href={hero.ctaPrimaryLink}
                 className="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-full font-semibold hover:opacity-90 transition-opacity"
               >
-                Agendar Cita
+                {hero.ctaPrimary}
                 <ArrowRight size={20} />
               </Link>
               <Link
-                href="tel:+12105550123"
+                href={hero.ctaSecondaryLink}
                 className="inline-flex items-center justify-center gap-2 border-2 border-accent text-accent px-8 py-4 rounded-full font-semibold hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 <Phone size={20} />
-                (210) 555-0123
+                {hero.ctaSecondary}
               </Link>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 pt-12 border-t border-border">
               <div>
-                <p className="text-3xl font-bold text-accent">500+</p>
-                <p className="text-sm text-muted-foreground">Clientes Felices</p>
+                <p className="text-3xl font-bold text-accent">{stats.clients.value}</p>
+                <p className="text-sm text-muted-foreground">{stats.clients.label}</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-accent">98%</p>
-                <p className="text-sm text-muted-foreground">Satisfacción</p>
+                <p className="text-3xl font-bold text-accent">{stats.satisfaction.value}</p>
+                <p className="text-sm text-muted-foreground">{stats.satisfaction.label}</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-accent">15+</p>
-                <p className="text-sm text-muted-foreground">Años</p>
+                <p className="text-3xl font-bold text-accent">{stats.years.value}</p>
+                <p className="text-sm text-muted-foreground">{stats.years.label}</p>
               </div>
             </div>
           </div>
@@ -67,8 +71,8 @@ export default function Hero() {
               <div className="absolute inset-16 border-4 border-accent rounded-xl opacity-30" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🔧</div>
-                  <p className="text-primary font-bold">Servicio Premium</p>
+                  <div className="text-6xl mb-4">{hero.visualEmoji}</div>
+                  <p className="text-primary font-bold">{hero.visualText}</p>
                 </div>
               </div>
             </div>

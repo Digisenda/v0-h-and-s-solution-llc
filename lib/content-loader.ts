@@ -2,6 +2,8 @@ import { GALLERY_ITEMS, FAQ_ITEMS } from "./static-content"
 import type { GalleryItem as GalleryItemType, TeamMember as TeamMemberType } from "./types"
 import homeES from "@/content/home.es.json"
 import homeEN from "@/content/home.en.json"
+import siteES from "@/content/site.es.json"
+import siteEN from "@/content/site.en.json"
 import servicesES from "@/content/services.es.json"
 import servicesEN from "@/content/services.en.json"
 import aboutES from "@/content/about.es.json"
@@ -129,9 +131,103 @@ export interface GalleryItem {
   featured?: boolean
 }
 
+// Home page content types
+export interface HomeContent {
+  hero: {
+    badge: string
+    title: string
+    titleAccent: string
+    description: string
+    ctaPrimary: string
+    ctaPrimaryLink: string
+    ctaSecondary: string
+    ctaSecondaryLink: string
+    visualEmoji: string
+    visualText: string
+  }
+  stats: {
+    clients: { value: string; label: string }
+    satisfaction: { value: string; label: string }
+    years: { value: string; label: string }
+  }
+  servicesSection: {
+    badge: string
+    title: string
+    description: string
+  }
+  testimonialsSection: {
+    badge: string
+    title: string
+  }
+  ctaSection: {
+    title: string
+    description: string
+    ctaPrimary: string
+    ctaPrimaryLink: string
+    ctaSecondary: string
+    ctaSecondaryLink: string
+    phoneLabel: string
+    phoneValue: string
+    emailLabel: string
+    emailValue: string
+    locationLabel: string
+    locationValue: string
+  }
+}
+
+export interface SiteContent {
+  logo: {
+    initials: string
+    name: string
+    tagline: string
+    image: string
+  }
+  contact: {
+    phone: string
+    phoneLink: string
+    email: string
+    emailLink: string
+    location: string
+  }
+  navigation: {
+    home: string
+    services: string
+    testimonials: string
+    contact: string
+    gallery: string
+    blog: string
+    about: string
+    faq: string
+  }
+  buttons: {
+    callNow: string
+    viewAll: string
+  }
+  footer: {
+    description: string
+    linksTitle: string
+    servicesTitle: string
+    companyTitle: string
+    legalTitle: string
+    copyright: string
+    terms: string
+    privacy: string
+    termsAndConditions: string
+    privacyPolicy: string
+    legalContact: string
+    maintenance: string
+    repair: string
+    diagnostic: string
+  }
+}
+
 // Static imports - NO fs usage
-export async function getHomeContent(locale: "es" | "en" = "es") {
-  return locale === "en" ? homeEN : homeES
+export async function getHomeContent(locale: "es" | "en" = "es"): Promise<HomeContent> {
+  return (locale === "en" ? homeEN : homeES) as HomeContent
+}
+
+export async function getSiteContent(locale: "es" | "en" = "es"): Promise<SiteContent> {
+  return (locale === "en" ? siteEN : siteES) as SiteContent
 }
 
 export async function getServices(locale: "es" | "en" = "es"): Promise<Service[]> {

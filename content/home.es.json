@@ -1,6 +1,51 @@
 {
-  "heroTitle": "Diagnóstico y Reparación Automotriz de Calidad Profesional",
-  "heroSubtitle": "Personal certificado y tecnología avanzada para tu vehículo",
-  "ctaPrimary": "Solicitar Servicio",
-  "ctaSecondary": "Ver Servicios"
+  "hero": {
+    "badge": "Más de 15 años de experiencia",
+    "title": "Tu taller automotriz de",
+    "titleAccent": "confianza",
+    "description": "Servicio profesional con garantía. Reparación, mantenimiento y diagnóstico completo para todos los vehículos.",
+    "ctaPrimary": "Agendar Cita",
+    "ctaPrimaryLink": "#contacto",
+    "ctaSecondary": "(210) 555-0123",
+    "ctaSecondaryLink": "tel:+12105550123",
+    "visualEmoji": "🔧",
+    "visualText": "Servicio Premium"
+  },
+  "stats": {
+    "clients": {
+      "value": "500+",
+      "label": "Clientes Felices"
+    },
+    "satisfaction": {
+      "value": "98%",
+      "label": "Satisfacción"
+    },
+    "years": {
+      "value": "15+",
+      "label": "Años"
+    }
+  },
+  "servicesSection": {
+    "badge": "Servicios",
+    "title": "Servicios Automotrices Completos",
+    "description": "Desde mantenimiento preventivo hasta reparaciones complejas"
+  },
+  "testimonialsSection": {
+    "badge": "Testimonios",
+    "title": "Lo Que Dicen Nuestros Clientes"
+  },
+  "ctaSection": {
+    "title": "¿Listo para tu cita?",
+    "description": "Contacta con nosotros hoy para agendar tu servicio",
+    "ctaPrimary": "Llamar Ahora",
+    "ctaPrimaryLink": "tel:+12105550123",
+    "ctaSecondary": "Enviar Email",
+    "ctaSecondaryLink": "mailto:plus@hssolutionllc.com",
+    "phoneLabel": "Teléfono",
+    "phoneValue": "(210) 555-0123",
+    "emailLabel": "Email",
+    "emailValue": "plus@hssolutionllc.com",
+    "locationLabel": "Ubicación",
+    "locationValue": "San Antonio, TX"
+  }
 }

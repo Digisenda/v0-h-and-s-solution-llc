@@ -21,14 +21,22 @@ const testimonials = [
   },
 ]
 
-export default function Testimonials() {
+import type { HomeContent } from "@/lib/content-loader"
+
+interface TestimonialsProps {
+  content: HomeContent
+}
+
+export default function Testimonials({ content }: TestimonialsProps) {
+  const { testimonialsSection } = content
+
   return (
     <section id="testimonios" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wide">Testimonios</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-pretty">Lo Que Dicen Nuestros Clientes</h2>
+          <p className="text-accent font-semibold text-sm uppercase tracking-wide">{testimonialsSection.badge}</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-pretty">{testimonialsSection.title}</h2>
         </div>
 
         {/* Testimonials Grid */}

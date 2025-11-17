@@ -1,7 +1,13 @@
 import Link from "next/link"
+import type { SiteContent } from "@/lib/content-loader"
 
-export default function Footer() {
+interface FooterProps {
+  content: SiteContent
+}
+
+export default function Footer({ content }: FooterProps) {
   const currentYear = 2024
+  const { logo, contact, navigation, footer } = content
 
   return (
     <footer className="bg-card border-t border-border">
@@ -10,39 +16,43 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <div className="text-lg font-bold text-accent">H&S</div>
-              </div>
+              {logo.image ? (
+                <img src={logo.image} alt={logo.name} className="w-10 h-10 rounded-lg" />
+              ) : (
+                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                  <div className="text-lg font-bold text-accent">{logo.initials}</div>
+                </div>
+              )}
               <div>
-                <p className="font-bold text-primary">H&S Solutions</p>
-                <p className="text-xs text-muted-foreground">Taller Automotriz</p>
+                <p className="font-bold text-primary">{logo.name}</p>
+                <p className="text-xs text-muted-foreground">{logo.tagline}</p>
               </div>
             </Link>
-            <p className="text-muted-foreground text-sm">Servicio automotriz profesional con garantía</p>
+            <p className="text-muted-foreground text-sm">{footer.description}</p>
           </div>
 
           {/* Links */}
           <div>
-            <p className="font-semibold text-foreground mb-4">Enlaces</p>
+            <p className="font-semibold text-foreground mb-4">{footer.linksTitle}</p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/" className="text-muted-foreground hover:text-accent transition-colors">
-                  Inicio
+                  {navigation.home}
                 </Link>
               </li>
               <li>
                 <Link href="/servicios" className="text-muted-foreground hover:text-accent transition-colors">
-                  Servicios
+                  {navigation.services}
                 </Link>
               </li>
               <li>
                 <Link href="/galeria" className="text-muted-foreground hover:text-accent transition-colors">
-                  Galería
+                  {navigation.gallery}
                 </Link>
               </li>
               <li>
                 <Link href="/blog" className="text-muted-foreground hover:text-accent transition-colors">
-                  Blog
+                  {navigation.blog}
                 </Link>
               </li>
             </ul>
@@ -50,36 +60,36 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <p className="font-semibold text-foreground mb-4">Servicios</p>
+            <p className="font-semibold text-foreground mb-4">{footer.servicesTitle}</p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/servicios" className="text-muted-foreground hover:text-accent transition-colors">
-                  Ver todos
+                  {footer.legalTitle}
                 </Link>
               </li>
-              <li className="text-muted-foreground">Mantenimiento</li>
-              <li className="text-muted-foreground">Reparación</li>
-              <li className="text-muted-foreground">Diagnóstico</li>
+              <li className="text-muted-foreground">{footer.maintenance}</li>
+              <li className="text-muted-foreground">{footer.repair}</li>
+              <li className="text-muted-foreground">{footer.diagnostic}</li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <p className="font-semibold text-foreground mb-4">Empresa</p>
+            <p className="font-semibold text-foreground mb-4">{footer.companyTitle}</p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/about" className="text-muted-foreground hover:text-accent transition-colors">
-                  Acerca de
+                  {navigation.about}
                 </Link>
               </li>
               <li>
                 <Link href="/contacto" className="text-muted-foreground hover:text-accent transition-colors">
-                  Contacto
+                  {navigation.contact}
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="text-muted-foreground hover:text-accent transition-colors">
-                  Preguntas Frecuentes
+                  {navigation.faq}
                 </Link>
               </li>
             </ul>
@@ -87,24 +97,21 @@ export default function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="font-semibold text-foreground mb-4">Legal</p>
+            <p className="font-semibold text-foreground mb-4">{footer.legalTitle}</p>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/terminos" className="text-muted-foreground hover:text-accent transition-colors">
-                  Términos y Condiciones
+                  {footer.termsAndConditions}
                 </Link>
               </li>
               <li>
                 <Link href="/privacidad" className="text-muted-foreground hover:text-accent transition-colors">
-                  Política de Privacidad
+                  {footer.privacyPolicy}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="mailto:plus@hssolutionllc.com"
-                  className="text-muted-foreground hover:text-accent transition-colors"
-                >
-                  Contacto Legal
+                <Link href={contact.emailLink} className="text-muted-foreground hover:text-accent transition-colors">
+                  {footer.legalContact}
                 </Link>
               </li>
             </ul>
@@ -114,13 +121,15 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-            <p>© {currentYear} H&S Solutions LLC. Todos los derechos reservados.</p>
+            <p>
+              © {currentYear} {logo.name}. {footer.copyright}.
+            </p>
             <div className="flex gap-4 mt-4 md:mt-0">
               <Link href="/terminos" className="hover:text-accent transition-colors">
-                Términos
+                {footer.terms}
               </Link>
               <Link href="/privacidad" className="hover:text-accent transition-colors">
-                Privacidad
+                {footer.privacy}
               </Link>
             </div>
           </div>

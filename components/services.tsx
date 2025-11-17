@@ -39,19 +39,23 @@ const services = [
   },
 ]
 
-export default function Services() {
+import type { HomeContent } from "@/lib/content-loader"
+
+interface ServicesProps {
+  content: HomeContent
+}
+
+export default function Services({ content }: ServicesProps) {
+  const { servicesSection } = content
+
   return (
     <section id="servicios" className="py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 space-y-4">
-          <p className="text-accent font-semibold text-sm uppercase tracking-wide">Servicios</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-pretty">
-            Servicios Automotrices Completos
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Desde mantenimiento preventivo hasta reparaciones complejas
-          </p>
+          <p className="text-accent font-semibold text-sm uppercase tracking-wide">{servicesSection.badge}</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground text-pretty">{servicesSection.title}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{servicesSection.description}</p>
         </div>
 
         {/* Services Grid */}

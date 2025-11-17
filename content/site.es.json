@@ -1,0 +1,45 @@
+{
+  "logo": {
+    "initials": "H&S",
+    "name": "H&S Solutions",
+    "tagline": "Taller Automotriz",
+    "image": ""
+  },
+  "contact": {
+    "phone": "(210) 555-0123",
+    "phoneLink": "tel:+12105550123",
+    "email": "plus@hssolutionllc.com",
+    "emailLink": "mailto:plus@hssolutionllc.com",
+    "location": "San Antonio, TX"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "contact": "Contacto",
+    "gallery": "Galería",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "faq": "Preguntas Frecuentes"
+  },
+  "buttons": {
+    "callNow": "Llamar Ahora",
+    "viewAll": "Ver todos"
+  },
+  "footer": {
+    "description": "Servicio automotriz profesional con garantía",
+    "linksTitle": "Enlaces",
+    "servicesTitle": "Servicios",
+    "companyTitle": "Empresa",
+    "legalTitle": "Legal",
+    "copyright": "Todos los derechos reservados",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "termsAndConditions": "Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad",
+    "legalContact": "Contacto Legal",
+    "maintenance": "Mantenimiento",
+    "repair": "Reparación",
+    "diagnostic": "Diagnóstico"
+  }
+}

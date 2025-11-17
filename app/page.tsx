@@ -4,6 +4,7 @@ import Services from "@/components/services"
 import Testimonials from "@/components/testimonials"
 import CTA from "@/components/cta"
 import Footer from "@/components/footer"
+import { getHomeContent, getSiteContent } from "@/lib/content-loader"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -31,15 +32,19 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Home() {
+export default async function Home() {
+  // Load content from CMS (default to Spanish)
+  const homeContent = await getHomeContent("es")
+  const siteContent = await getSiteContent("es")
+
   return (
     <main className="min-h-screen bg-background">
-      <Header />
-      <Hero />
-      <Services />
-      <Testimonials />
-      <CTA />
-      <Footer />
+      <Header content={siteContent} />
+      <Hero content={homeContent} />
+      <Services content={homeContent} />
+      <Testimonials content={homeContent} />
+      <CTA content={homeContent} />
+      <Footer content={siteContent} />
     </main>
   )
 }
