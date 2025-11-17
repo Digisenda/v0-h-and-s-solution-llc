@@ -3,7 +3,7 @@ backend:
   repo: digisenda/hssolutionllc-site
   branch: main
   base_url: https://www.hssolutionllc.com
-  auth_endpoint: api/decap-github-oauth
+  auth_endpoint: /api/decap-github-oauth
   squash_merges: true
   open_authoring: false
   commit_messages:
