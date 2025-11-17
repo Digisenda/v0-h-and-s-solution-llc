@@ -1,8 +1,3 @@
-// GitHub OAuth endpoint for Decap CMS
-// Paso 1: si no hay "code", redirige a GitHub /authorize
-// Paso 2: si hay "code", intercambia por access_token y se lo devuelve a Decap
-// usando el formato de postMessage que Decap espera.
-
 import { type NextRequest, NextResponse } from "next/server"
 
 const CLIENT_ID = process.env.DECAP_GITHUB_CLIENT_ID
@@ -19,11 +14,11 @@ export async function GET(request: NextRequest) {
     console.error("Missing Decap GitHub OAuth env vars")
     return NextResponse.json(
       { error: "Server misconfiguration: missing OAuth credentials" },
-      { status: 500 }
+      { status: 500 },
     )
   }
 
-  // 1) PRIMER PASO: no hay "code" -> redirijo a GitHub /authorize
+  // 1) SIN "code" -> redirigir a GitHub
   if (!code) {
     const origin = url.origin
     const redirectUri = `${origin}/api/decap-github-oauth`
@@ -39,7 +34,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(authorizeUrl.toString())
   }
 
-  // 2) SEGUNDO PASO: ya viene "code" desde GitHub -> intercambio por token
+  // 2) CON "code" -> pedir access_token a GitHub
   try {
     const origin = url.origin
     const redirectUri = `${origin}/api/decap-github-oauth`
@@ -64,45 +59,49 @@ export async function GET(request: NextRequest) {
       console.error("GitHub OAuth error:", tokenData)
       return NextResponse.json(
         { error: tokenData.error_description || tokenData.error || "OAuth failed" },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
     if (!tokenData.access_token) {
       return NextResponse.json(
         { error: "No access token received from GitHub" },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
     const accessToken = tokenData.access_token
 
-    // HTML que habla con Decap usando el protocolo correcto
+    // HTML DEL POPUP: handshake + success siguiendo el patrón oficial
     const htmlResponse = `
-      <!DOCTYPE html>
+      <!doctype html>
       <html>
-        <head>
-          <meta charset="utf-8" />
-          <title>GitHub Auth Success</title>
-        </head>
         <body>
-          <p>Autenticación correcta, puedes cerrar esta ventana.</p>
+          <p>Autenticación correcta. Puedes cerrar esta ventana.</p>
           <script>
             (function() {
-              // Paso 1: handshake
-              window.opener && window.opener.postMessage("authorizing:github", "*");
+              function receiveMessage(e) {
+                try {
+                  // Cuando el CMS responde al "authorizing:github",
+                  // reenviamos el token en el formato que espera Decap
+                  window.opener.postMessage(
+                    'authorization:github:success:' + JSON.stringify({
+                      token: '${accessToken}',
+                      provider: 'github'
+                    }),
+                    e.origin
+                  );
+                  window.removeEventListener("message", receiveMessage, false);
+                  window.close();
+                } catch (err) {
+                  console.error("Error reenviando el token al opener:", err);
+                }
+              }
 
-              // Paso 2: enviar token en el formato STRING que Decap espera
-              setTimeout(function() {
-                window.opener && window.opener.postMessage(
-                  'authorization:github:success:' + JSON.stringify({
-                    token: "${accessToken}",
-                    provider: "github"
-                  }),
-                  "*"
-                );
-                window.close();
-              }, 100);
+              window.addEventListener("message", receiveMessage, false);
+
+              // Handshake: avisamos al CMS que estamos autorizando
+              window.opener.postMessage("authorizing:github", "*");
             })();
           </script>
         </body>
