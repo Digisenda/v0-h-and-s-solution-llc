@@ -8,9 +8,6 @@ import { type NextRequest, NextResponse } from "next/server"
 const CLIENT_ID = process.env.DECAP_GITHUB_CLIENT_ID
 const CLIENT_SECRET = process.env.DECAP_GITHUB_CLIENT_SECRET
 
-// IMPORTANTE: origen EXACTO del sitio (con www)
-const SITE_ORIGIN = "https://www.hssolutionllc.com"
-
 export async function GET(request: NextRequest) {
   const url = new URL(request.url)
   const searchParams = url.searchParams
@@ -28,7 +25,8 @@ export async function GET(request: NextRequest) {
 
   // 1) PRIMER PASO: no hay "code" -> redirijo a GitHub /authorize
   if (!code) {
-    const redirectUri = `${SITE_ORIGIN}/api/decap-github-oauth`
+    const origin = url.origin
+    const redirectUri = `${origin}/api/decap-github-oauth`
 
     const authorizeUrl = new URL("https://github.com/login/oauth/authorize")
     authorizeUrl.searchParams.set("client_id", CLIENT_ID)
@@ -43,7 +41,8 @@ export async function GET(request: NextRequest) {
 
   // 2) SEGUNDO PASO: ya viene "code" desde GitHub -> intercambio por token
   try {
-    const redirectUri = `${SITE_ORIGIN}/api/decap-github-oauth`
+    const origin = url.origin
+    const redirectUri = `${origin}/api/decap-github-oauth`
 
     const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
       method: "POST",
@@ -87,20 +86,20 @@ export async function GET(request: NextRequest) {
           <title>GitHub Auth Success</title>
         </head>
         <body>
-          <p>Autenticación correcta, cerrando ventana…</p>
+          <p>Autenticación correcta, puedes cerrar esta ventana.</p>
           <script>
             (function() {
               // Paso 1: handshake
-              window.opener.postMessage("authorizing:github", "${SITE_ORIGIN}");
+              window.opener && window.opener.postMessage("authorizing:github", "*");
 
               // Paso 2: enviar token en el formato STRING que Decap espera
               setTimeout(function() {
-                window.opener.postMessage(
+                window.opener && window.opener.postMessage(
                   'authorization:github:success:' + JSON.stringify({
                     token: "${accessToken}",
                     provider: "github"
                   }),
-                  "${SITE_ORIGIN}"
+                  "*"
                 );
                 window.close();
               }, 100);
