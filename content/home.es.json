@@ -1,15 +1,15 @@
 {
   "hero": {
-    "badge": "Más de 15 años de experiencia",
-    "title": "Tu taller automotriz de",
     "titleAccent": "confianza",
-    "description": "Servicio profesional con garantía. Reparación, mantenimiento y diagnóstico completo para todos los vehículos.",
-    "ctaPrimary": "Agendar Cita",
-    "ctaPrimaryLink": "#contacto",
+    "badge": "Más de 15 años de experiencia",
     "ctaSecondary": "(210) 812-6833",
-    "ctaSecondaryLink": "tel:+12108126833",
     "visualEmoji": "🔧",
-    "visualText": "Servicio Premium"
+    "ctaPrimaryLink": "#contacto",
+    "visualText": "Servicio Premium",
+    "ctaPrimary": "Agendar Cita",
+    "title": "Tu taller automotriz de",
+    "description": "Servicio profesional con garantía. Reparación, mantenimiento y diagnóstico completo para todos los vehículos.",
+    "ctaSecondaryLink": "tel:+12108126833"
   },
   "stats": {
     "clients": {
@@ -35,17 +35,17 @@
     "title": "Lo Que Dicen Nuestros Clientes"
   },
   "ctaSection": {
-    "title": "¿Listo para tu cita?",
-    "description": "Contacta con nosotros hoy para agendar tu servicio",
-    "ctaPrimary": "Llamar Ahora",
-    "ctaPrimaryLink": "tel:+12108126833",
-    "ctaSecondary": "Enviar Email",
-    "ctaSecondaryLink": "mailto:plus@hssolutionllc.com",
-    "phoneLabel": "Teléfono",
     "phoneValue": "(210) 812-6833",
-    "emailLabel": "Email",
+    "ctaSecondary": "Enviar Email",
+    "phoneLabel": "Teléfono",
+    "ctaPrimaryLink": "tel:+12108126833",
+    "ctaPrimary": "Llamar Ahora",
     "emailValue": "plus@hssolutionllc.com",
-    "locationLabel": "Ubicación",
-    "locationValue": "San Antonio, TX"
+    "emailLabel": "Email",
+    "title": "¿Listo para tu cita?",
+    "locationValue": "San Antonio, TX",
+    "description": "Contacta con nosotros hoy para agendar tu servicio",
+    "ctaSecondaryLink": "mailto:plus@hssolutionllc.com",
+    "locationLabel": "Ubicación"
   }
 }
