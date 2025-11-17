@@ -23,21 +23,12 @@ export const metadata: Metadata = {
     url: "https://h-and-s-solutions.vercel.app",
     siteName: "H&S Solutions LLC",
     title: "H&S Solutions LLC - Taller Automotriz Profesional",
-    description: "Servicios automotrices profesionales con garantía de calidad",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "H&S Solutions LLC",
-      },
-    ],
+    description: "Servicios automotrices profesionales con garantía de calidad en San Antonio, TX",
   },
   twitter: {
     card: "summary_large_image",
     title: "H&S Solutions LLC - Taller Automotriz",
-    description: "Servicios automotrices profesionales en San Antonio",
-    images: ["/og-image.jpg"],
+    description: "Servicios automotrices profesionales en San Antonio, TX",
   },
   generator: "v0.app",
   icons: {
