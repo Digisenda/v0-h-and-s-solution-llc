@@ -1,6 +1,51 @@
 {
-  "heroTitle": "Professional Automotive Diagnosis and Repair",
-  "heroSubtitle": "Certified staff and advanced technology for your vehicle",
-  "ctaPrimary": "Request Service",
-  "ctaSecondary": "View Services"
+  "hero": {
+    "badge": "Over 15 years of experience",
+    "title": "Your trusted",
+    "titleAccent": "automotive shop",
+    "description": "Professional service with warranty. Repair, maintenance and complete diagnosis for all vehicles.",
+    "ctaPrimary": "Schedule Appointment",
+    "ctaPrimaryLink": "#contact",
+    "ctaSecondary": "(210) 555-0123",
+    "ctaSecondaryLink": "tel:+12105550123",
+    "visualEmoji": "🔧",
+    "visualText": "Premium Service"
+  },
+  "stats": {
+    "clients": {
+      "value": "500+",
+      "label": "Happy Clients"
+    },
+    "satisfaction": {
+      "value": "98%",
+      "label": "Satisfaction"
+    },
+    "years": {
+      "value": "15+",
+      "label": "Years"
+    }
+  },
+  "servicesSection": {
+    "badge": "Services",
+    "title": "Complete Automotive Services",
+    "description": "From preventive maintenance to complex repairs"
+  },
+  "testimonialsSection": {
+    "badge": "Testimonials",
+    "title": "What Our Clients Say"
+  },
+  "ctaSection": {
+    "title": "Ready for your appointment?",
+    "description": "Contact us today to schedule your service",
+    "ctaPrimary": "Call Now",
+    "ctaPrimaryLink": "tel:+12105550123",
+    "ctaSecondary": "Send Email",
+    "ctaSecondaryLink": "mailto:plus@hssolutionllc.com",
+    "phoneLabel": "Phone",
+    "phoneValue": "(210) 555-0123",
+    "emailLabel": "Email",
+    "emailValue": "plus@hssolutionllc.com",
+    "locationLabel": "Location",
+    "locationValue": "San Antonio, TX"
+  }
 }

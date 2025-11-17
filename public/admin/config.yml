@@ -17,26 +17,283 @@ public_folder: /uploads
 publish_mode: editorial_workflow
 
 collections:
-  - name: "home"
-    label: "Página Principal"
+  - name: "home_page"
+    label: "Página de Inicio"
     files:
       - name: "home_es"
-        label: "Inicio (Español)"
+        label: "Home (Español)"
         file: "content/home.es.json"
         fields:
-          - { label: "Título Hero", name: "heroTitle", widget: "string" }
-          - { label: "Subtítulo Hero", name: "heroSubtitle", widget: "text" }
-          - { label: "CTA Principal", name: "ctaPrimary", widget: "string" }
-          - { label: "CTA Secundaria", name: "ctaSecondary", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Título Acento", name: "titleAccent", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "CTA Principal", name: "ctaPrimary", widget: "string" }
+              - { label: "CTA Principal Link", name: "ctaPrimaryLink", widget: "string" }
+              - { label: "CTA Secundario", name: "ctaSecondary", widget: "string" }
+              - { label: "CTA Secundario Link", name: "ctaSecondaryLink", widget: "string" }
+              - { label: "Emoji Visual", name: "visualEmoji", widget: "string" }
+              - { label: "Texto Visual", name: "visualText", widget: "string" }
+          
+          - label: "Estadísticas"
+            name: "stats"
+            widget: "object"
+            fields:
+              - label: "Clientes"
+                name: "clients"
+                widget: "object"
+                fields:
+                  - { label: "Valor", name: "value", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+              - label: "Satisfacción"
+                name: "satisfaction"
+                widget: "object"
+                fields:
+                  - { label: "Valor", name: "value", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+              - label: "Años"
+                name: "years"
+                widget: "object"
+                fields:
+                  - { label: "Valor", name: "value", widget: "string" }
+                  - { label: "Etiqueta", name: "label", widget: "string" }
+          
+          - label: "Sección Servicios"
+            name: "servicesSection"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+          
+          - label: "Sección Testimonios"
+            name: "testimonialsSection"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Título", name: "title", widget: "string" }
+          
+          - label: "Sección CTA"
+            name: "ctaSection"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "CTA Principal", name: "ctaPrimary", widget: "string" }
+              - { label: "CTA Principal Link", name: "ctaPrimaryLink", widget: "string" }
+              - { label: "CTA Secundario", name: "ctaSecondary", widget: "string" }
+              - { label: "CTA Secundario Link", name: "ctaSecondaryLink", widget: "string" }
+              - { label: "Etiqueta Teléfono", name: "phoneLabel", widget: "string" }
+              - { label: "Valor Teléfono", name: "phoneValue", widget: "string" }
+              - { label: "Etiqueta Email", name: "emailLabel", widget: "string" }
+              - { label: "Valor Email", name: "emailValue", widget: "string" }
+              - { label: "Etiqueta Ubicación", name: "locationLabel", widget: "string" }
+              - { label: "Valor Ubicación", name: "locationValue", widget: "string" }
       
       - name: "home_en"
-        label: "Inicio (English)"
+        label: "Home (English)"
         file: "content/home.en.json"
         fields:
-          - { label: "Hero Title", name: "heroTitle", widget: "string" }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
-          - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
-          - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Title Accent", name: "titleAccent", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
+              - { label: "Primary CTA Link", name: "ctaPrimaryLink", widget: "string" }
+              - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+              - { label: "Secondary CTA Link", name: "ctaSecondaryLink", widget: "string" }
+              - { label: "Visual Emoji", name: "visualEmoji", widget: "string" }
+              - { label: "Visual Text", name: "visualText", widget: "string" }
+          
+          - label: "Statistics"
+            name: "stats"
+            widget: "object"
+            fields:
+              - label: "Clients"
+                name: "clients"
+                widget: "object"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - label: "Satisfaction"
+                name: "satisfaction"
+                widget: "object"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+              - label: "Years"
+                name: "years"
+                widget: "object"
+                fields:
+                  - { label: "Value", name: "value", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+          
+          - label: "Services Section"
+            name: "servicesSection"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          
+          - label: "Testimonials Section"
+            name: "testimonialsSection"
+            widget: "object"
+            fields:
+              - { label: "Badge", name: "badge", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+          
+          - label: "CTA Section"
+            name: "ctaSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Primary CTA", name: "ctaPrimary", widget: "string" }
+              - { label: "Primary CTA Link", name: "ctaPrimaryLink", widget: "string" }
+              - { label: "Secondary CTA", name: "ctaSecondary", widget: "string" }
+              - { label: "Secondary CTA Link", name: "ctaSecondaryLink", widget: "string" }
+              - { label: "Phone Label", name: "phoneLabel", widget: "string" }
+              - { label: "Phone Value", name: "phoneValue", widget: "string" }
+              - { label: "Email Label", name: "emailLabel", widget: "string" }
+              - { label: "Email Value", name: "emailValue", widget: "string" }
+              - { label: "Location Label", name: "locationLabel", widget: "string" }
+              - { label: "Location Value", name: "locationValue", widget: "string" }
+  
+  - name: "site_global"
+    label: "Configuración Global"
+    files:
+      - name: "site_es"
+        label: "Global (Español)"
+        file: "content/site.es.json"
+        fields:
+          - label: "Logo"
+            name: "logo"
+            widget: "object"
+            fields:
+              - { label: "Iniciales", name: "initials", widget: "string" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Imagen (opcional)", name: "image", widget: "image", required: false }
+          
+          - label: "Contacto"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Teléfono", name: "phone", widget: "string" }
+              - { label: "Teléfono Link", name: "phoneLink", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Email Link", name: "emailLink", widget: "string" }
+              - { label: "Ubicación", name: "location", widget: "string" }
+          
+          - label: "Navegación"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - { label: "Inicio", name: "home", widget: "string" }
+              - { label: "Servicios", name: "services", widget: "string" }
+              - { label: "Testimonios", name: "testimonials", widget: "string" }
+              - { label: "Contacto", name: "contact", widget: "string" }
+              - { label: "Galería", name: "gallery", widget: "string" }
+              - { label: "Blog", name: "blog", widget: "string" }
+              - { label: "Acerca de", name: "about", widget: "string" }
+              - { label: "FAQ", name: "faq", widget: "string" }
+          
+          - label: "Botones"
+            name: "buttons"
+            widget: "object"
+            fields:
+              - { label: "Llamar Ahora", name: "callNow", widget: "string" }
+              - { label: "Ver Todos", name: "viewAll", widget: "string" }
+          
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Descripción", name: "description", widget: "string" }
+              - { label: "Título Enlaces", name: "linksTitle", widget: "string" }
+              - { label: "Título Servicios", name: "servicesTitle", widget: "string" }
+              - { label: "Título Empresa", name: "companyTitle", widget: "string" }
+              - { label: "Título Legal", name: "legalTitle", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "Términos", name: "terms", widget: "string" }
+              - { label: "Privacidad", name: "privacy", widget: "string" }
+              - { label: "Términos y Condiciones", name: "termsAndConditions", widget: "string" }
+              - { label: "Política de Privacidad", name: "privacyPolicy", widget: "string" }
+              - { label: "Contacto Legal", name: "legalContact", widget: "string" }
+              - { label: "Mantenimiento", name: "maintenance", widget: "string" }
+              - { label: "Reparación", name: "repair", widget: "string" }
+              - { label: "Diagnóstico", name: "diagnostic", widget: "string" }
+      
+      - name: "site_en"
+        label: "Global (English)"
+        file: "content/site.en.json"
+        fields:
+          - label: "Logo"
+            name: "logo"
+            widget: "object"
+            fields:
+              - { label: "Initials", name: "initials", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "string" }
+              - { label: "Image (optional)", name: "image", widget: "image", required: false }
+          
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Phone Link", name: "phoneLink", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Email Link", name: "emailLink", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+          
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - { label: "Home", name: "home", widget: "string" }
+              - { label: "Services", name: "services", widget: "string" }
+              - { label: "Testimonials", name: "testimonials", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
+              - { label: "Gallery", name: "gallery", widget: "string" }
+              - { label: "Blog", name: "blog", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "FAQ", name: "faq", widget: "string" }
+          
+          - label: "Buttons"
+            name: "buttons"
+            widget: "object"
+            fields:
+              - { label: "Call Now", name: "callNow", widget: "string" }
+              - { label: "View All", name: "viewAll", widget: "string" }
+          
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Links Title", name: "linksTitle", widget: "string" }
+              - { label: "Services Title", name: "servicesTitle", widget: "string" }
+              - { label: "Company Title", name: "companyTitle", widget: "string" }
+              - { label: "Legal Title", name: "legalTitle", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - { label: "Terms", name: "terms", widget: "string" }
+              - { label: "Privacy", name: "privacy", widget: "string" }
+              - { label: "Terms and Conditions", name: "termsAndConditions", widget: "string" }
+              - { label: "Privacy Policy", name: "privacyPolicy", widget: "string" }
+              - { label: "Legal Contact", name: "legalContact", widget: "string" }
+              - { label: "Maintenance", name: "maintenance", widget: "string" }
+              - { label: "Repair", name: "repair", widget: "string" }
+              - { label: "Diagnostic", name: "diagnostic", widget: "string" }
 
   - name: "servicios"
     label: "Servicios"

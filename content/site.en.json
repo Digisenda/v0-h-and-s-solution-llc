@@ -1,0 +1,45 @@
+{
+  "logo": {
+    "initials": "H&S",
+    "name": "H&S Solutions",
+    "tagline": "Automotive Shop",
+    "image": ""
+  },
+  "contact": {
+    "phone": "(210) 555-0123",
+    "phoneLink": "tel:+12105550123",
+    "email": "plus@hssolutionllc.com",
+    "emailLink": "mailto:plus@hssolutionllc.com",
+    "location": "San Antonio, TX"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "about": "About",
+    "faq": "FAQ"
+  },
+  "buttons": {
+    "callNow": "Call Now",
+    "viewAll": "View all"
+  },
+  "footer": {
+    "description": "Professional automotive service with warranty",
+    "linksTitle": "Links",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "legalTitle": "Legal",
+    "copyright": "All rights reserved",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "legalContact": "Legal Contact",
+    "maintenance": "Maintenance",
+    "repair": "Repair",
+    "diagnostic": "Diagnostic"
+  }
+}

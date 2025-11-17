@@ -3,15 +3,21 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import type { SiteContent } from "@/lib/content-loader"
 
-export default function Header() {
+interface HeaderProps {
+  content: SiteContent
+}
+
+export default function Header({ content }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const { logo, contact, navigation, buttons } = content
 
   const menuItems = [
-    { label: "Inicio", href: "#" },
-    { label: "Servicios", href: "#servicios" },
-    { label: "Testimonios", href: "#testimonios" },
-    { label: "Contacto", href: "#contacto" },
+    { label: navigation.home, href: "#" },
+    { label: navigation.services, href: "#servicios" },
+    { label: navigation.testimonials, href: "#testimonios" },
+    { label: navigation.contact, href: "#contacto" },
   ]
 
   return (
@@ -20,12 +26,16 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <div className="text-2xl font-bold text-accent">H&S</div>
-            </div>
+            {logo.image ? (
+              <img src={logo.image} alt={logo.name} className="w-12 h-12 rounded-lg" />
+            ) : (
+              <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                <div className="text-2xl font-bold text-accent">{logo.initials}</div>
+              </div>
+            )}
             <div className="hidden sm:block">
-              <p className="font-bold text-primary text-lg">H&S Solutions</p>
-              <p className="text-xs text-muted-foreground">Taller Automotriz</p>
+              <p className="font-bold text-primary text-lg">{logo.name}</p>
+              <p className="text-xs text-muted-foreground">{logo.tagline}</p>
             </div>
           </Link>
 
@@ -45,10 +55,10 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Link
-              href="tel:+12105550123"
+              href={contact.phoneLink}
               className="bg-accent text-accent-foreground px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
-              Llamar Ahora
+              {buttons.callNow}
             </Link>
           </div>
 
@@ -72,10 +82,10 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="tel:+12105550123"
+              href={contact.phoneLink}
               className="block bg-accent text-accent-foreground px-6 py-2 rounded-full font-semibold text-center"
             >
-              Llamar Ahora
+              {buttons.callNow}
             </Link>
           </nav>
         )}
