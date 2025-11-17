@@ -3,15 +3,15 @@ backend:
   repo: digisenda/hssolutionllc-site
   branch: main
   auth_endpoint: /api/decap-github-oauth
-  base_url: https://h-and-s-solutions.vercel.app
+  base_url: https://www.hssolutionllc.com
   squash_merges: true
   commit_messages:
     create: 'Crear {{collection}}: "{{slug}}"'
     update: 'Actualizar {{collection}}: "{{slug}}"'
     delete: 'Eliminar {{collection}}: "{{slug}}"'
 
-media_folder: /public/uploads
-public_path: /uploads
+media_folder: public/uploads
+public_folder: /uploads
 
 publish_mode: editorial_workflow
 
@@ -159,7 +159,6 @@ collections:
         fields:
           - { label: "Content", name: "body", widget: "markdown" }
 
-  # ... rest of collections remain unchanged ...
   - name: "blog"
     label: "Blog"
     folder: "content/blog"
