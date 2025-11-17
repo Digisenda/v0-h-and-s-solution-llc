@@ -2,7 +2,7 @@
   "hero": {
     "titleAccent": "automotive shop",
     "badge": "Over 15 years of experience",
-    "ctaSecondary": "(210) 812-6823",
+    "ctaSecondary": "(210) 812-6833",
     "visualEmoji": "🔧",
     "ctaPrimaryLink": "#contact",
     "visualText": "Premium Service",
@@ -35,10 +35,10 @@
     "title": "What Our Clients Say"
   },
   "ctaSection": {
-    "phoneValue": "(210) 555-0123",
+    "phoneValue": "(210) 812-6833",
     "ctaSecondary": "Send Email",
     "phoneLabel": "Phone",
-    "ctaPrimaryLink": "tel:+12105550123",
+    "ctaPrimaryLink": "tel:+12108126833",
     "ctaPrimary": "Call Now",
     "emailValue": "plus@hssolutionllc.com",
     "emailLabel": "Email",
