@@ -10,6 +10,9 @@ import aboutES from "@/content/about.es.json"
 import aboutEN from "@/content/about.en.json"
 import contactES from "@/content/contact.es.json"
 import contactEN from "@/content/contact.en.json"
+import fs from "fs/promises"
+import path from "path"
+import matter from "gray-matter"
 
 export interface BlogPost {
   slug: string
@@ -27,6 +30,8 @@ export interface Testimonial {
   author: string
   quote: string
   rating: number
+  image?: string
+  date?: string
   published?: boolean
 }
 
@@ -96,6 +101,7 @@ export interface ContactInfo {
   hours: string
   facebook?: string
   instagram?: string
+  googleMapsUrl?: string
   description?: string
 }
 
@@ -142,8 +148,10 @@ export interface HomeContent {
     ctaPrimaryLink: string
     ctaSecondary: string
     ctaSecondaryLink: string
-    visualEmoji: string
-    visualText: string
+    visualEmoji?: string
+    visualText?: string
+    heroMedia?: string
+    heroMediaType?: "image" | "video"
   }
   stats: {
     clients: { value: string; label: string }
@@ -251,15 +259,72 @@ export async function getContactInfo(locale: "es" | "en" = "es"): Promise<Contac
 }
 
 export async function getGalleryItems(): Promise<GalleryItemType[]> {
-  return GALLERY_ITEMS
+  try {
+    const galeriaDir = path.join(process.cwd(), "content/galeria")
+    const files = await fs.readdir(galeriaDir).catch(() => [])
+    
+    const items = await Promise.all(
+      files
+        .filter((file) => file.endsWith(".md"))
+        .map(async (file) => {
+          const content = await fs.readFile(path.join(galeriaDir, file), "utf-8")
+          const { data } = matter(content)
+          const slug = file.replace(/\.md$/, "")
+          return {
+            slug,
+            title: data.title || "",
+            description: data.description || "",
+            serviceType: data.service || "Otro",
+            beforeImage: data.imageBefore || "",
+            afterImage: data.imageAfter || "",
+            date: data.date || new Date().toISOString(),
+            featured: data.featured || false,
+          } as GalleryItemType
+        })
+    )
+    
+    const published = items.filter((item) => item.beforeImage && item.afterImage)
+    return published.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  } catch (error) {
+    console.error("Error loading gallery items:", error)
+    return GALLERY_ITEMS
+  }
 }
 
 export async function getFAQs(): Promise<FAQ[]> {
-  return FAQ_ITEMS
+  try {
+    const faqDir = path.join(process.cwd(), "content/faq")
+    const files = await fs.readdir(faqDir).catch(() => [])
+    
+    const faqs = await Promise.all(
+      files
+        .filter((file) => file.endsWith(".md"))
+        .map(async (file) => {
+          const content = await fs.readFile(path.join(faqDir, file), "utf-8")
+          const { data, content: body } = matter(content)
+          const slug = file.replace(/\.md$/, "")
+          return {
+            slug,
+            question: data.question || "",
+            answer: body || data.answer || "",
+            category: data.category || "General",
+            order: data.order || 0,
+            published: data.published !== false,
+          } as FAQ
+        })
+    )
+    
+    const published = faqs.filter((faq) => faq.published)
+    return published.sort((a, b) => a.order - b.order)
+  } catch (error) {
+    console.error("Error loading FAQs:", error)
+    return FAQ_ITEMS
+  }
 }
 
 export async function getFAQsByCategory(category: string): Promise<FAQ[]> {
-  return FAQ_ITEMS.filter((faq) => faq.category === category)
+  const faqs = await getFAQs()
+  return faqs.filter((faq) => faq.category === category)
 }
 
 export async function getTeamMembers(): Promise<TeamMemberType[]> {
@@ -267,7 +332,35 @@ export async function getTeamMembers(): Promise<TeamMemberType[]> {
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {
-  return []
+  try {
+    const testimoniosDir = path.join(process.cwd(), "content/testimonios")
+    const files = await fs.readdir(testimoniosDir).catch(() => [])
+    
+    const testimonials = await Promise.all(
+      files
+        .filter((file) => file.endsWith(".md"))
+        .map(async (file) => {
+          const content = await fs.readFile(path.join(testimoniosDir, file), "utf-8")
+          const { data } = matter(content)
+          return {
+            author: data.author || "",
+            quote: data.quote || "",
+            rating: data.rating || 5,
+            image: data.image,
+            date: data.date,
+            published: data.published !== false,
+          } as Testimonial
+        })
+    )
+    
+    return testimonials.filter((t) => t.published).sort((a, b) => {
+      if (!a.date || !b.date) return 0
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+  } catch (error) {
+    console.error("Error loading testimonials:", error)
+    return []
+  }
 }
 
 export async function getContacts(): Promise<Contact[]> {
@@ -279,28 +372,114 @@ export async function getNewsletterSubscribers(): Promise<Newsletter[]> {
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  return []
-}
-
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  return null
-}
-
-export async function getTermsAndConditions(): Promise<LegalPage | null> {
-  return {
-    title: "Términos y Condiciones",
-    lastUpdated: "2024-01-01T00:00:00.000Z",
-    content: "Términos y condiciones pendiente de actualizar",
-    published: true,
+  try {
+    const blogDir = path.join(process.cwd(), "content/blog")
+    const files = await fs.readdir(blogDir).catch(() => [])
+    
+    const posts = await Promise.all(
+      files
+        .filter((file) => file.endsWith(".md"))
+        .map(async (file) => {
+          const content = await fs.readFile(path.join(blogDir, file), "utf-8")
+          const { data, content: body } = matter(content)
+          const slug = file.replace(/\.md$/, "")
+          return {
+            slug,
+            title: data.title || "",
+            description: data.description || "",
+            content: body,
+            image: data.image,
+            author: data.author,
+            date: data.date,
+            category: data.category,
+            published: data.published !== false,
+          } as BlogPost
+        })
+    )
+    
+    return posts.filter((p) => p.published).sort((a, b) => {
+      if (!a.date || !b.date) return 0
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
+  } catch (error) {
+    console.error("Error loading blog posts:", error)
+    return []
   }
 }
 
-export async function getPrivacyPolicy(): Promise<LegalPage | null> {
-  return {
-    title: "Política de Privacidad",
-    lastUpdated: "2024-01-01T00:00:00.000Z",
-    content: "Política de privacidad pendiente de actualizar",
-    published: true,
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const blogDir = path.join(process.cwd(), "content/blog")
+    const files = await fs.readdir(blogDir).catch(() => [])
+    const file = files.find((f) => f.replace(/\.md$/, "") === slug)
+    
+    if (!file) return null
+    
+    const content = await fs.readFile(path.join(blogDir, file), "utf-8")
+    const { data, content: body } = matter(content)
+    
+    return {
+      slug,
+      title: data.title || "",
+      description: data.description || "",
+      content: body,
+      image: data.image,
+      author: data.author,
+      date: data.date,
+      category: data.category,
+      published: data.published !== false,
+    }
+  } catch (error) {
+    console.error("Error loading blog post:", error)
+    return null
+  }
+}
+
+export async function getTermsAndConditions(locale: "es" | "en" = "es"): Promise<LegalPage | null> {
+  try {
+    const filename = locale === "en" ? "terms.en.md" : "terms.es.md"
+    const filePath = path.join(process.cwd(), "content/legal", filename)
+    const content = await fs.readFile(filePath, "utf-8")
+    const { content: body } = matter(content)
+    
+    return {
+      title: "Términos y Condiciones",
+      lastUpdated: new Date().toISOString(),
+      content: body,
+      published: true,
+    }
+  } catch (error) {
+    console.error("Error loading terms:", error)
+    return {
+      title: "Términos y Condiciones",
+      lastUpdated: "2024-01-01T00:00:00.000Z",
+      content: "Términos y condiciones pendiente de actualizar",
+      published: true,
+    }
+  }
+}
+
+export async function getPrivacyPolicy(locale: "es" | "en" = "es"): Promise<LegalPage | null> {
+  try {
+    const filename = locale === "en" ? "privacy.en.md" : "privacy.es.md"
+    const filePath = path.join(process.cwd(), "content/legal", filename)
+    const content = await fs.readFile(filePath, "utf-8")
+    const { content: body } = matter(content)
+    
+    return {
+      title: "Política de Privacidad",
+      lastUpdated: new Date().toISOString(),
+      content: body,
+      published: true,
+    }
+  } catch (error) {
+    console.error("Error loading privacy:", error)
+    return {
+      title: "Política de Privacidad",
+      lastUpdated: "2024-01-01T00:00:00.000Z",
+      content: "Política de privacidad pendiente de actualizar",
+      published: true,
+    }
   }
 }
 

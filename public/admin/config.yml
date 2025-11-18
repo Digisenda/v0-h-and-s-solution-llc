@@ -36,8 +36,8 @@ collections:
               - { label: "CTA Principal Link", name: "ctaPrimaryLink", widget: "string" }
               - { label: "CTA Secundario", name: "ctaSecondary", widget: "string" }
               - { label: "CTA Secundario Link", name: "ctaSecondaryLink", widget: "string" }
-              - { label: "Emoji Visual", name: "visualEmoji", widget: "string" }
-              - { label: "Texto Visual", name: "visualText", widget: "string" }
+              - { label: "Imagen/Video Hero", name: "heroMedia", widget: "image", required: false, hint: "Imagen o video para mostrar en el hero" }
+              - { label: "Tipo de Media", name: "heroMediaType", widget: "select", options: ["image", "video"], default: "image", required: false }
           
           - label: "Estadísticas"
             name: "stats"
@@ -376,6 +376,9 @@ collections:
           - { label: "Estado", name: "state", widget: "string" }
           - { label: "Código Postal", name: "zipcode", widget: "string" }
           - { label: "Horarios", name: "hours", widget: "string" }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Google Maps URL (para QR)", name: "googleMapsUrl", widget: "string", required: false, hint: "URL completa de Google Maps para generar QR" }
 
       - name: "contact_en"
         label: "Contacto (English)"
@@ -446,4 +449,31 @@ collections:
       - { label: "Imagen Antes", name: "imageBefore", widget: "image" }
       - { label: "Imagen Después", name: "imageAfter", widget: "image" }
       - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Publicado", name: "published", widget: "boolean", default: true }
+
+  - name: "testimonios"
+    label: "Testimonios"
+    folder: "content/testimonios"
+    create: true
+    slug: "{{slug}}"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Nombre del Cliente", name: "author", widget: "string" }
+      - { label: "Testimonio", name: "quote", widget: "text" }
+      - { label: "Calificación (1-5)", name: "rating", widget: "number", min: 1, max: 5, value_type: "int" }
+      - { label: "Imagen del Cliente", name: "image", widget: "image", required: false, hint: "Foto opcional del cliente" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Publicado", name: "published", widget: "boolean", default: true }
+
+  - name: "faq"
+    label: "Preguntas Frecuentes"
+    folder: "content/faq"
+    create: true
+    slug: "{{slug}}"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "Pregunta", name: "question", widget: "string" }
+      - { label: "Respuesta", name: "answer", widget: "markdown" }
+      - { label: "Categoría", name: "category", widget: "select", options: ["General", "Servicios", "Precios", "Garantía", "Horarios", "Otro"] }
+      - { label: "Orden", name: "order", widget: "number", value_type: "int", default: 0, hint: "Orden de visualización (menor número aparece primero)" }
       - { label: "Publicado", name: "published", widget: "boolean", default: true }

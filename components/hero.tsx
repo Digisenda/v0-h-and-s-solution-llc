@@ -66,15 +66,41 @@ export default function Hero({ content }: HeroProps) {
           {/* Right Visual */}
           <div className="hidden md:flex items-center justify-center">
             <div className="relative w-full aspect-square">
-              <div className="absolute inset-0 bg-primary rounded-3xl opacity-20" />
-              <div className="absolute inset-8 bg-accent rounded-2xl opacity-10" />
-              <div className="absolute inset-16 border-4 border-accent rounded-xl opacity-30" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">{hero.visualEmoji}</div>
-                  <p className="text-primary font-bold">{hero.visualText}</p>
-                </div>
-              </div>
+              {hero.heroMedia ? (
+                <>
+                  {hero.heroMediaType === "video" ? (
+                    <video
+                      src={hero.heroMedia}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover rounded-3xl"
+                    />
+                  ) : (
+                    <img
+                      src={hero.heroMedia}
+                      alt={hero.title}
+                      className="absolute inset-0 w-full h-full object-cover rounded-3xl"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent rounded-3xl" />
+                </>
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-primary rounded-3xl opacity-20" />
+                  <div className="absolute inset-8 bg-accent rounded-2xl opacity-10" />
+                  <div className="absolute inset-16 border-4 border-accent rounded-xl opacity-30" />
+                  {(hero.visualEmoji || hero.visualText) && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        {hero.visualEmoji && <div className="text-6xl mb-4">{hero.visualEmoji}</div>}
+                        {hero.visualText && <p className="text-primary font-bold">{hero.visualText}</p>}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

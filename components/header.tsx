@@ -14,10 +14,11 @@ export default function Header({ content }: HeaderProps) {
   const { logo, contact, navigation, buttons } = content
 
   const menuItems = [
-    { label: navigation.home, href: "#" },
-    { label: navigation.services, href: "#servicios" },
-    { label: navigation.testimonials, href: "#testimonios" },
-    { label: navigation.contact, href: "#contacto" },
+    { label: navigation.home, href: "/" },
+    { label: navigation.services, href: "/servicios" },
+    { label: navigation.gallery, href: "/galeria" },
+    { label: navigation.faq, href: "/faq" },
+    { label: navigation.contact, href: "/contacto" },
   ]
 
   return (
@@ -55,7 +56,7 @@ export default function Header({ content }: HeaderProps) {
           {/* CTA Button */}
           <div className="hidden md:block">
             <Link
-              href={contact.phoneLink}
+              href="/contacto"
               className="bg-accent text-accent-foreground px-6 py-2 rounded-full font-semibold hover:opacity-90 transition-opacity"
             >
               {buttons.callNow}
@@ -82,7 +83,7 @@ export default function Header({ content }: HeaderProps) {
               </Link>
             ))}
             <Link
-              href={contact.phoneLink}
+              href="/contacto"
               className="block bg-accent text-accent-foreground px-6 py-2 rounded-full font-semibold text-center"
             >
               {buttons.callNow}

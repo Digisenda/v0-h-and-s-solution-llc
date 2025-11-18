@@ -6,7 +6,7 @@ interface FooterProps {
 }
 
 export default function Footer({ content }: FooterProps) {
-  const currentYear = 2024
+  const currentYear = new Date().getFullYear()
   const { logo, contact, navigation, footer } = content
 
   return (
@@ -64,12 +64,19 @@ export default function Footer({ content }: FooterProps) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/servicios" className="text-muted-foreground hover:text-accent transition-colors">
-                  {footer.legalTitle}
+                  {footer.maintenance}
                 </Link>
               </li>
-              <li className="text-muted-foreground">{footer.maintenance}</li>
-              <li className="text-muted-foreground">{footer.repair}</li>
-              <li className="text-muted-foreground">{footer.diagnostic}</li>
+              <li>
+                <Link href="/servicios" className="text-muted-foreground hover:text-accent transition-colors">
+                  {footer.repair}
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicios" className="text-muted-foreground hover:text-accent transition-colors">
+                  {footer.diagnostic}
+                </Link>
+              </li>
             </ul>
           </div>
 
