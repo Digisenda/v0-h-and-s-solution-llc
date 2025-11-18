@@ -1,10 +1,6 @@
 import { MetadataRoute } from "next"
 import { getServices } from "@/lib/content-loader"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.hssolutionllc.com"
 

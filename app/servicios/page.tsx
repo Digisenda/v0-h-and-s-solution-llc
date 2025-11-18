@@ -3,10 +3,6 @@ import { getServices } from "@/lib/content-loader"
 import type { Service } from "@/lib/content-loader"
 import { Wrench, Zap, Wind, Cog, Shield, Hammer } from "lucide-react"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 const iconMap: Record<string, (props: { size: number; className: string }) => JSX.Element> = {
   Wrench,
   Zap,
