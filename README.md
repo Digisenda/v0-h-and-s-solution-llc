@@ -68,8 +68,8 @@ GITHUB_OAUTH_CLIENT_SECRET=tu_client_secret_aqui
 2. Click en "New OAuth App"
 3. Rellena:
    - **Application name**: H&S Solutions CMS
-   - **Homepage URL**: \`https://tu-dominio.vercel.app\`
-   - **Authorization callback URL**: \`https://tu-dominio.vercel.app/api/decap-github-oauth\`
+   - **Homepage URL**: \`https://www.hssolutionllc.com\`
+   - **Authorization callback URL**: \`https://www.hssolutionllc.com/api/decap-github-oauth\`
 4. Copia el **Client ID** y **Client Secret**
 5. Pégalos en las variables de entorno de Vercel
 
