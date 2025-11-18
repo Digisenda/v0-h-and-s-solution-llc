@@ -4,6 +4,10 @@ import Link from "next/link"
 import type { Service } from "@/lib/content-loader"
 import { ChevronLeft, Check } from 'lucide-react'
 
+// Force dynamic rendering for CMS content
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export async function generateStaticParams() {
   const services = await getServices("es")
   

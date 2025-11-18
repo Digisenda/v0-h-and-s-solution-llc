@@ -3,6 +3,10 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
+// Force dynamic rendering for CMS content
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: "Acerca de Nosotros | H&S Solution LLC",
   description:
