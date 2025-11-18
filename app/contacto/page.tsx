@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/contact-form"
 import { getContactInfo } from "@/lib/content-loader"
+import { Facebook, Instagram } from "lucide-react"
 
 export const metadata = {
   title: "Contacto - H&S Solution LLC",
@@ -60,14 +61,40 @@ export default async function ContactPage() {
 
                 <div>
                   <h3 className="text-xl font-bold text-foreground mb-2">Horarios</h3>
-                  <p className="text-muted-foreground">
-                    Lunes - Viernes: 7:00 AM - 6:00 PM
-                    <br />
-                    Sábado: 8:00 AM - 4:00 PM
-                    <br />
-                    Domingo: Cerrado
+                  <p className="text-muted-foreground whitespace-pre-line">
+                    {contactInfo.hours}
                   </p>
                 </div>
+
+                {(contactInfo.facebook || contactInfo.instagram) && (
+                  <div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">Redes Sociales</h3>
+                    <div className="flex gap-4">
+                      {contactInfo.facebook && (
+                        <a
+                          href={contactInfo.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:text-accent/80 transition-colors"
+                          aria-label="Facebook"
+                        >
+                          <Facebook size={32} />
+                        </a>
+                      )}
+                      {contactInfo.instagram && (
+                        <a
+                          href={contactInfo.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-accent hover:text-accent/80 transition-colors"
+                          aria-label="Instagram"
+                        >
+                          <Instagram size={32} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -77,18 +104,32 @@ export default async function ContactPage() {
             </div>
           </div>
 
-          {/* Map Section (Optional) */}
-          <div className="bg-muted rounded-lg overflow-hidden h-96">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3481.9099254999996!2d-98.49362!3d29.42656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b59f5ecb2005%3A0x2c5a25b0d7d1b0e0!2sSan%20Antonio%2C%20TX!5e0!3m2!1ses!2sus!4v1234567890"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+          {/* Map Section */}
+          {contactInfo.googleMapsUrl ? (
+            <div className="bg-muted rounded-lg overflow-hidden h-96">
+              <iframe
+                src={contactInfo.googleMapsUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          ) : (
+            <div className="bg-muted rounded-lg overflow-hidden h-96">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3481.9099254999996!2d-98.49362!3d29.42656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b59f5ecb2005%3A0x2c5a25b0d7d1b0e0!2sSan%20Antonio%2C%20TX!5e0!3m2!1ses!2sus!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          )}
         </div>
       </section>
     </div>

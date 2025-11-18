@@ -1,29 +1,17 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import GalleryGrid from "@/components/gallery-grid"
-import type { GalleryItem } from "@/lib/content-loader"
+import { getGalleryItems } from "@/lib/content-loader"
+import type { Metadata } from "next"
 
-export default function GalleryPage() {
-  const [items, setItems] = useState<GalleryItem[]>([])
-  const [loading, setLoading] = useState(true)
+export const metadata: Metadata = {
+  title: "Galería de Trabajos - H&S Solution LLC",
+  description: "Galería de trabajos de reparación y mantenimiento automotriz realizados por H&S Solution LLC",
+  alternates: {
+    canonical: "/galeria",
+  },
+}
 
-  useEffect(() => {
-    async function fetchGallery() {
-      try {
-        const response = await fetch("/api/gallery")
-        const data = await response.json()
-        setItems(data.items || [])
-      } catch (error) {
-        console.error("Failed to load gallery:", error)
-        setItems([])
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGallery()
-  }, [])
+export default async function GalleryPage() {
+  const items = await getGalleryItems()
 
   return (
     <main className="min-h-screen bg-background">
@@ -35,20 +23,12 @@ export default function GalleryPage() {
           </p>
         </div>
 
-        {loading ? (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">Cargando galería...</p>
-          </div>
+        {items.length > 0 ? (
+          <GalleryGrid items={items} />
         ) : (
-          <>
-            <GalleryGrid items={items} />
-
-            {items.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-muted-foreground">Aún no hay trabajos en la galería. Vuelve pronto.</p>
-              </div>
-            )}
-          </>
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Aún no hay trabajos en la galería. Vuelve pronto.</p>
+          </div>
         )}
       </div>
     </main>

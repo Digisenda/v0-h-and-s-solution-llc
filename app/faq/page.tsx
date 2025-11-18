@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Accordion,
   AccordionContent,
@@ -7,41 +5,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { getFAQs } from "@/lib/content-loader"
+import type { Metadata } from "next"
+import ReactMarkdown from "react-markdown"
 
-const faqs = [
-  {
-    slug: "servicios-generales",
-    question: "¿Qué tipo de servicios ofrece H&S Solution LLC?",
-    answer:
-      "Realizamos mantenimiento preventivo, diagnóstico computarizado, reparación de motor, frenos, suspensión, cambio de aceite y revisión general del vehículo.",
+export const metadata: Metadata = {
+  title: "Preguntas Frecuentes - H&S Solution LLC",
+  description: "Respuestas a las preguntas más comunes sobre nuestros servicios automotrices en San Antonio, TX",
+  alternates: {
+    canonical: "/faq",
   },
-  {
-    slug: "citas",
-    question: "¿Necesito agendar una cita o puedo llegar sin avisar?",
-    answer:
-      "Puedes visitarnos directamente, pero te recomendamos agendar una cita para garantizar un mejor tiempo de atención y evitar esperas innecesarias.",
-  },
-  {
-    slug: "garantia",
-    question: "¿Ofrecen garantía sobre los trabajos realizados?",
-    answer:
-      "Sí. La mayoría de nuestros servicios cuentan con garantía sobre mano de obra y repuestos. La duración depende del tipo de trabajo realizado.",
-  },
-  {
-    slug: "tiempo-reparacion",
-    question: "¿Cuánto demora normalmente una reparación?",
-    answer:
-      "Depende del tipo de servicio. Un cambio de aceite puede tardar menos de una hora, mientras que reparaciones mayores pueden requerir más tiempo. Siempre te informamos antes de iniciar el trabajo.",
-  },
-  {
-    slug: "formas-de-pago",
-    question: "¿Qué formas de pago aceptan?",
-    answer:
-      "Aceptamos efectivo, tarjetas de débito y crédito, y en algunos casos pagos electrónicos. Consulta en recepción para más detalles.",
-  },
-]
+}
 
-export default function FAQPage() {
+export default async function FAQPage() {
+  const faqs = await getFAQs()
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted">
       {/* Hero Section */}
@@ -77,7 +55,7 @@ export default function FAQPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/80 leading-relaxed pt-2 pb-4">
                   <div className="prose prose-sm max-w-none dark:prose-invert">
-                    {faq.answer}
+                    <ReactMarkdown>{faq.answer}</ReactMarkdown>
                   </div>
                 </AccordionContent>
               </AccordionItem>
