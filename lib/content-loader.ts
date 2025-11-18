@@ -1,7 +1,3 @@
-// Force dynamic rendering to ensure CMS content is always fresh
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 import { GALLERY_ITEMS, FAQ_ITEMS } from "./static-content"
 import type { GalleryItem as GalleryItemType, TeamMember as TeamMemberType } from "./types"
 import homeES from "@/content/home.es.json"

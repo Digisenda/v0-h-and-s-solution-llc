@@ -2,10 +2,6 @@ import { getPrivacyPolicy } from "@/lib/content-loader"
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 export const metadata = {
   title: "Política de Privacidad - H&S Solution LLC",
   description: "Política de privacidad de H&S Solution LLC",

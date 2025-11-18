@@ -2,10 +2,6 @@ import { getTermsAndConditions } from "@/lib/content-loader"
 import { notFound } from "next/navigation"
 import ReactMarkdown from "react-markdown"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 export const metadata = {
   title: "Términos y Condiciones - H&S Solution LLC",
   description: "Términos y condiciones de uso del sitio web de H&S Solution LLC",

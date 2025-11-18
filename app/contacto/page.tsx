@@ -1,10 +1,6 @@
 import { ContactForm } from "@/components/contact-form"
 import { getContactInfo } from "@/lib/content-loader"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 export const metadata = {
   title: "Contacto - H&S Solution LLC",
   description: "Ponte en contacto con H&S Solution LLC para solicitar nuestros servicios automotrices en San Antonio, TX",

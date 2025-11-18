@@ -7,10 +7,6 @@ import Footer from "@/components/footer"
 import { getHomeContent, getSiteContent } from "@/lib/content-loader"
 import type { Metadata } from "next"
 
-// Force dynamic rendering for CMS content
-export const dynamic = "force-dynamic"
-export const revalidate = 0
-
 export const metadata: Metadata = {
   title: "H&S Solution LLC - Taller Automotriz Profesional en San Antonio, TX",
   description:
