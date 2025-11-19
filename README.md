@@ -85,7 +85,7 @@ backend:
 
 Reemplaza:
 - \`tu-usuario\` con tu username de GitHub
-- \`tu-dominio.vercel.app\` con tu dominio real
+- \`www.hssolutionllc.com)\` con tu dominio real
 
 ### 4. Instalar Dependencias y Desplegar
 
