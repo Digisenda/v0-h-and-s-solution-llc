@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  cacheComponents: true,
+  // cacheComponents disabled to fix build errors with filesystem-based content loading
+  // cacheComponents: true,
   typescript: {
     ignoreBuildErrors: true,
   },

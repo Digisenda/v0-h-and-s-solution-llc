@@ -1,16 +1,9 @@
-import { getBlogPost, getBlogPosts } from "@/lib/content-loader"
+import { getBlogPost } from "@/lib/content-loader"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
 import { ChevronLeft } from "lucide-react"
 import type { Metadata } from "next"
-
-export async function generateStaticParams() {
-  const posts = await getBlogPosts()
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
-}
 
 export async function generateMetadata({
   params,
@@ -18,20 +11,28 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const post = await getBlogPost(slug)
+  
+  try {
+    const post = await getBlogPost(slug)
 
-  if (!post) {
-    return {
-      title: "Post no encontrado",
+    if (!post) {
+      return {
+        title: "Post no encontrado",
+      }
     }
-  }
 
-  return {
-    title: `${post.title} - Blog | H&S Solution LLC`,
-    description: post.description,
-    alternates: {
-      canonical: `/blog/${slug}`,
-    },
+    return {
+      title: `${post.title} - Blog | H&S Solution LLC`,
+      description: post.description,
+      alternates: {
+        canonical: `/blog/${slug}`,
+      },
+    }
+  } catch (error) {
+    console.error("Error generating metadata for blog post:", error)
+    return {
+      title: "Blog | H&S Solution LLC",
+    }
   }
 }
 

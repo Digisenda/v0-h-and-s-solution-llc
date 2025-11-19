@@ -1,16 +1,8 @@
-import { getService, getServices } from "@/lib/content-loader"
+import { getService } from "@/lib/content-loader"
 import { notFound } from 'next/navigation'
 import Link from "next/link"
 import type { Service } from "@/lib/content-loader"
 import { ChevronLeft, Check } from 'lucide-react'
-
-export async function generateStaticParams() {
-  const services = await getServices("es")
-  
-  return services.map((service) => ({
-    slug: service.slug,
-  }))
-}
 
 export async function generateMetadata({
   params,
@@ -18,32 +10,40 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const service = await getService(slug)
+  
+  try {
+    const service = await getService(slug)
 
-  if (!service) {
-    return {
-      title: "Servicio no encontrado",
+    if (!service) {
+      return {
+        title: "Servicio no encontrado",
+      }
     }
-  }
 
-  return {
-    title: `${service.name} - H&S Solution LLC`,
-    description: `${service.fullDescription || service.description} Servicio profesional en San Antonio, TX. Precio: ${service.price}. Duración: ${service.duration}.`,
-    keywords: [
-      service.name,
-      "servicio automotriz San Antonio",
-      "reparación",
-      "mantenimiento",
-      slug,
-    ],
-    alternates: {
-      canonical: `/servicios/${slug}`,
-    },
-    openGraph: {
+    return {
       title: `${service.name} - H&S Solution LLC`,
-      description: service.description,
-      type: "website",
-    },
+      description: `${service.fullDescription || service.description} Servicio profesional en San Antonio, TX. Precio: ${service.price}. Duración: ${service.duration}.`,
+      keywords: [
+        service.name,
+        "servicio automotriz San Antonio",
+        "reparación",
+        "mantenimiento",
+        slug,
+      ],
+      alternates: {
+        canonical: `/servicios/${slug}`,
+      },
+      openGraph: {
+        title: `${service.name} - H&S Solution LLC`,
+        description: service.description,
+        type: "website",
+      },
+    }
+  } catch (error) {
+    console.error("Error generating metadata for service:", error)
+    return {
+      title: "Servicios | H&S Solution LLC",
+    }
   }
 }
 
