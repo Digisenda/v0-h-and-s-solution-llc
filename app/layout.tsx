@@ -169,6 +169,18 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
+      {/* Google Analytics */}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KMZ0SCZYF"></script>
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9KMZ0SCZYF');
+    `,
+  }}
+/>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />
