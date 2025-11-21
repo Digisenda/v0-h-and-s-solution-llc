@@ -28,7 +28,7 @@
   "servicesSection": {
     "badge": "Servicios",
     "title": "Servicios Automotrices Completos",
-    "description": "Desde mantenimiento preventivo hasta reparaciones complejas"
+    "description": "Desde mantenimiento preventivo hasta reparaciones complejas con piezas garantizadas y de proveedores profesionales y de confianza"
   },
   "testimonialsSection": {
     "badge": "Testimonios",
@@ -44,7 +44,7 @@
     "emailLabel": "Email",
     "title": "¿Listo para tu cita?",
     "locationValue": "6614 Topper Pkwy, San Antonio, TX 78233",
-    "description": "Contacta con nosotros hoy para agendar tu servicio",
+    "description": "Contacta con nosotros hoy para agendar tu servicio o simplemente llega a nuestro taller, donde atenderemos prioritariamente.",
     "ctaSecondaryLink": "mailto:plus@hssolutionllc.com",
     "locationLabel": "Ubicación"
   }
