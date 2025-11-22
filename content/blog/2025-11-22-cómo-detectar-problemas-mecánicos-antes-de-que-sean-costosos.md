@@ -5,7 +5,7 @@ description: >-
 
 
   Detectar un problema mecánico a tiempo puede marcar la diferencia entre una visita rápida al taller o una reparación costosa. En H&S Solutions LLC, queremos ayudarte a identificar las señales más comunes que indican que algo no anda bien con tu vehículo.
-image: /uploads/blog-1.png
+image: /uploads/blog-1.webp
 author: H&S SOLUTION LLC
 date: 2025-11-21T20:22:00.000-06:00
 category: Mantenimiento
