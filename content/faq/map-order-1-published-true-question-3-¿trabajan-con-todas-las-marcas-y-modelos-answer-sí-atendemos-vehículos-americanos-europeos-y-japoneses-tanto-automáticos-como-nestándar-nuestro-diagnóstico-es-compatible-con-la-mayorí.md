@@ -1,5 +1,5 @@
 ---
-question: 3. ¿Trabajan con todas las marcas y modelos?
+question: ¿Trabajan con todas las marcas y modelos?
 answer: >-
   Sí.  Atendemos vehículos americanos, europeos y japoneses, tanto automáticos
   como
