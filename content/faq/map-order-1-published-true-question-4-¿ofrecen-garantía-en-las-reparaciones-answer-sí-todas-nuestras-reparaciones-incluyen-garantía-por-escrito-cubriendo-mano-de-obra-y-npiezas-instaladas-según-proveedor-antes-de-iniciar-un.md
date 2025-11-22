@@ -1,5 +1,5 @@
 ---
-question: 4. ¿Ofrecen garantía en las reparaciones?
+question: ¿Ofrecen garantía en las reparaciones?
 answer: >-
   Sí. Todas nuestras reparaciones incluyen garantía por escrito, cubriendo mano
   de obra y
