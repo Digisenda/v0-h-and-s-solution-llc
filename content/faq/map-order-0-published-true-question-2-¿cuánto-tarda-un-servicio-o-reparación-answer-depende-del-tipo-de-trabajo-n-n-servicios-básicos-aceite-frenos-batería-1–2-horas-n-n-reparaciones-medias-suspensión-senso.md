@@ -1,5 +1,5 @@
 ---
-question: 2. ¿Cuánto tarda un servicio o reparación?
+question: ¿Cuánto tarda un servicio o reparación?
 answer: >-
   \* Depende del tipo de trabajo:
 
