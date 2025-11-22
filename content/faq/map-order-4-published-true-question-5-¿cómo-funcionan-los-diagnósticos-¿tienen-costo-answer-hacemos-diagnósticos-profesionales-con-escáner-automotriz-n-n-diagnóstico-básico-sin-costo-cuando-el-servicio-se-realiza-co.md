@@ -1,5 +1,5 @@
 ---
-question: 5. ¿Cómo funcionan los diagnósticos? ¿Tienen costo?
+question: ¿Cómo funcionan los diagnósticos? ¿Tienen costo?
 answer: >-
   \* Hacemos diagnósticos profesionales con escáner automotriz.
 
